@@ -1,3 +1,5 @@
 .venv
 100-Days-Python
 .gitignore
+.env
+weather_data
