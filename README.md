@@ -29,9 +29,6 @@ Projects/     ← applied projects built along the way
 > Quick links — click to jump to each project section.
 
 - [🆕 Tweet Writer (CrewAI)](#-tweet-writer-crewai) ← latest
-- [File Analyzer](#-file-analyzer)
-- [Email Sorter](#-email-sorter)
-- [Weather Bot](#-weather-bot)
 - [ChatBot](#-chatbot)
 - [News Summarizer](#-news-summarizer)
 - [Text-to-Speech](#-text-to-speech)
@@ -55,49 +52,6 @@ cd Projects/Tweet-Writer-CrewAI
 pip install -r requirements.txt
 # Set OPENAI_API_KEY + Twitter credentials in .env
 python main.py "your topic here"
-```
-
----
-
-### 📁 File Analyzer
-
-Multi-format file analysis CLI. Generates statistics and complexity metrics for `.txt`, `.py`, `.csv`, and `.json` files.
-
-**Run:**
-
-```bash
-cd Projects/p1-File-Analyzer
-pip install -r requirements.txt
-python File-Analyzer.py <path-to-file>
-```
-
----
-
-### 📧 Email Sorter
-
-Processes email lists — removes duplicates and invalid addresses with configurable CLI flags.
-
-**Run:**
-
-```bash
-cd Projects/p2-Email-Sorter
-pip install -r requirements.txt
-python main.py --input mails.txt
-```
-
----
-
-### 🌤 Weather Bot
-
-Fetches live weather data via a public API and exports results to JSON or CSV. Includes a mock-data mode for offline use.
-
-**Run:**
-
-```bash
-cd Projects/p3-Weather-Bot
-pip install -r requirements.txt
-cp config_example.py config.py   # add your API key
-python main.py
 ```
 
 ---
