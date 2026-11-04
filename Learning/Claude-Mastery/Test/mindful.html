@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mindful Paws — Where grooming meets calm</title>
+    <style>
+      :root {
+        --sage: #7a9a86;
+        --sage-dark: #587363;
+        --cream: #faf6ef;
+        --sand: #efe6d8;
+        --ink: #2f3a34;
+        --muted: #6b756f;
+        --accent: #d98f6b;
+        --white: #fff;
+        --radius: 18px;
+        --shadow: 0 10px 30px rgba(47, 58, 52, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+        line-height: 1.2;
+      }
+      .sans {
+        font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+      section {
+        padding: 90px 24px;
+      }
+      .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        font-family: -apple-system, "Segoe UI", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.75rem;
+        color: var(--sage-dark);
+        margin-bottom: 12px;
+      }
+      h2 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin-bottom: 14px;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 560px;
+        margin-bottom: 44px;
+      }
+
+      /* nav */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 28px;
+        background: rgba(250, 246, 239, 0.88);
+        backdrop-filter: blur(8px);
+        font-family: -apple-system, sans-serif;
+      }
+      nav .logo {
+        font-family: Georgia, serif;
+        font-size: 1.25rem;
+        color: var(--sage-dark);
+        text-decoration: none;
+      }
+      nav a.link {
+        color: var(--ink);
+        text-decoration: none;
+        margin-left: 22px;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+      nav a.link:hover {
+        color: var(--sage-dark);
+      }
+      @media (max-width: 640px) {
+        nav a.link {
+          display: none;
+        }
+      }
+
+      /* buttons */
+      .btn {
+        display: inline-block;
+        border: 0;
+        cursor: pointer;
+        font:
+          600 1rem -apple-system,
+          "Segoe UI",
+          sans-serif;
+        background: var(--sage-dark);
+        color: #fff;
+        padding: 14px 30px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn:hover {
+        background: var(--sage);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--sage-dark);
+        border: 2px solid var(--sage-dark);
+      }
+      .btn.ghost:hover {
+        background: var(--sage-dark);
+        color: #fff;
+      }
+
+      /* hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          160deg,
+          #e6efe8 0%,
+          var(--cream) 55%,
+          #f6e6da 100%
+        );
+      }
+      .hero .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.5;
+        animation: float 12s ease-in-out infinite;
+      }
+      .hero .b1 {
+        width: 360px;
+        height: 360px;
+        background: #cfe0d4;
+        top: 8%;
+        left: -80px;
+      }
+      .hero .b2 {
+        width: 300px;
+        height: 300px;
+        background: #f3d2bf;
+        bottom: 5%;
+        right: -60px;
+        animation-delay: -5s;
+      }
+      @keyframes float {
+        50% {
+          transform: translate(30px, -30px) scale(1.08);
+        }
+      }
+      .hero .wrap {
+        position: relative;
+      }
+      .hero .paw {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        animation: fade 1s both;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 7vw, 5rem);
+        margin-bottom: 18px;
+        animation: fade 1s 0.15s both;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--muted);
+        max-width: 520px;
+        margin: 0 auto 34px;
+        animation: fade 1s 0.3s both;
+      }
+      .hero .cta {
+        animation: fade 1s 0.45s both;
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* quiz */
+      #quiz {
+        background: var(--sand);
+      }
+      .quiz-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 40px;
+        max-width: 680px;
+        margin: 0 auto;
+        font-family: -apple-system, "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+      .progress {
+        height: 6px;
+        background: var(--sand);
+        border-radius: 99px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .progress i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--sage);
+        transition: width 0.5s ease;
+      }
+      .step-label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+        animation: slideIn 0.45s ease both;
+      }
+      .step.back.active {
+        animation-name: slideBack;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes slideBack {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .step h3 {
+        font-family: Georgia, serif;
+        font-size: 1.6rem;
+        margin-bottom: 22px;
+      }
+      .options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 14px;
+      }
+      .opt {
+        border: 2px solid var(--sand);
+        background: var(--cream);
+        border-radius: 14px;
+        padding: 20px 12px;
+        cursor: pointer;
+        text-align: center;
+        font: inherit;
+        color: var(--ink);
+        transition: all 0.2s;
+      }
+      .opt:hover {
+        border-color: var(--sage);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+      .opt.selected {
+        border-color: var(--sage-dark);
+        background: #e8f0ea;
+      }
+      .opt .em {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .opt small {
+        display: block;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .quiz-nav {
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .linkbtn {
+        background: none;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.9rem;
+      }
+      .linkbtn:hover {
+        color: var(--ink);
+      }
+      .result {
+        text-align: center;
+      }
+      .result .price {
+        font-family: Georgia, serif;
+        font-size: 3.6rem;
+        color: var(--sage-dark);
+        margin: 6px 0;
+      }
+      .result ul {
+        list-style: none;
+        color: var(--muted);
+        margin: 14px 0 26px;
+      }
+      .result .btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* services */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 22px;
+      }
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 30px 24px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 36px rgba(47, 58, 52, 0.16);
+      }
+      .card .ic {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+      .card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+      }
+      .card p {
+        font-family: -apple-system, sans-serif;
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+      }
+      .card .p {
+        font-size: 1.7rem;
+        color: var(--accent);
+      }
+
+      /* gallery */
+      #gallery {
+        background: var(--sand);
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+      .ph {
+        aspect-ratio: 1;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: -apple-system, sans-serif;
+        font-size: 0.85rem;
+        color: var(--sage-dark);
+        text-align: center;
+        border: 2px dashed rgba(88, 115, 99, 0.4);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .ph:hover {
+        transform: scale(1.04) rotate(-1deg);
+      }
+      .ph span {
+        font-size: 2.2rem;
+        margin-bottom: 6px;
+      }
+      .ph:nth-child(1) {
+        background: #dce8df;
+      }
+      .ph:nth-child(2) {
+        background: #f3dfd2;
+      }
+      .ph:nth-child(3) {
+        background: #e7e0f0;
+      }
+      .ph:nth-child(4) {
+        background: #f4ecc9;
+      }
+      .ph:nth-child(5) {
+        background: #d9e6ee;
+      }
+      .ph:nth-child(6) {
+        background: #f0d6dc;
+      }
+
+      /* form */
+      form {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 40px;
+        max-width: 560px;
+        margin: 0 auto;
+        font-family: -apple-system, "Segoe UI", sans-serif;
+      }
+      .field {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 13px 14px;
+        border: 2px solid var(--sand);
+        border-radius: 12px;
+        font: inherit;
+        background: var(--cream);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      input:focus,
+      select:focus {
+        outline: 0;
+        border-color: var(--sage);
+        box-shadow: 0 0 0 4px rgba(122, 154, 134, 0.2);
+      }
+      input:invalid:not(:placeholder-shown) {
+        border-color: #cf6b6b;
+      }
+      .hint {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .thanks {
+        display: none;
+        text-align: center;
+        padding: 30px 10px;
+        animation: fade 0.6s both;
+      }
+      .thanks .big {
+        font-size: 3rem;
+      }
+      form.done .fields {
+        display: none;
+      }
+      form.done .thanks {
+        display: block;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 24px;
+        color: var(--muted);
+        font-family: -apple-system, sans-serif;
+        font-size: 0.85rem;
+      }
+
+      /* scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="logo" href="#top">🐾 Mindful Paws</a>
+      <div>
+        <a class="link" href="#quiz">Estimate</a>
+        <a class="link" href="#services">Services</a>
+        <a class="link" href="#gallery">Gallery</a>
+        <a class="link" href="#book">Book</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="wrap">
+        <div class="paw">🐾</div>
+        <h1>Where grooming meets calm</h1>
+        <p>
+          A quiet, boutique salon where every pet is treated to gentle hands,
+          soothing spaces and zero rush.
+        </p>
+        <div class="cta">
+          <a href="#quiz" class="btn">Get a price estimate</a>
+          <a href="#book" class="btn ghost">Book a visit</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="quiz">
+      <div class="wrap reveal" style="text-align: center">
+        <div class="eyebrow">Quick estimate</div>
+        <h2>What will your pet's visit cost?</h2>
+        <p class="lead" style="margin-inline: auto">
+          Three quick questions and you'll have a price estimate.
+        </p>
+
+        <div class="quiz-card" style="text-align: left">
+          <div class="progress"><i id="bar"></i></div>
+          <div class="step-label" id="stepLabel">Question 1 of 3</div>
+
+          <div class="step active" data-step="0">
+            <h3>What kind of pet do you have?</h3>
+            <div class="options">
+              <button class="opt" data-key="type" data-value="dog">
+                <span class="em">🐶</span>Dog
+              </button>
+              <button class="opt" data-key="type" data-value="cat">
+                <span class="em">🐱</span>Cat<small>+$10</small>
+              </button>
+              <button class="opt" data-key="type" data-value="rabbit">
+                <span class="em">🐰</span>Small pet<small>−$10</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="step" data-step="1">
+            <h3>How big are they?</h3>
+            <div class="options">
+              <button class="opt" data-key="size" data-value="small">
+                <span class="em">🐩</span>Small<small>under 20 lb</small>
+              </button>
+              <button class="opt" data-key="size" data-value="medium">
+                <span class="em">🐕</span>Medium<small>20–50 lb · +$10</small>
+              </button>
+              <button class="opt" data-key="size" data-value="large">
+                <span class="em">🦮</span>Large<small>50 lb+ · +$25</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="step" data-step="2">
+            <h3>Which service would you like?</h3>
+            <div class="options" id="serviceOpts"></div>
+          </div>
+
+          <div class="step" data-step="3">
+            <div class="result">
+              <div class="eyebrow">Your estimate</div>
+              <div class="price" id="estimate">$0</div>
+              <ul id="summary"></ul>
+              <div class="btns">
+                <a href="#book" class="btn" id="bookFromQuiz"
+                  >Book this visit</a
+                >
+                <button class="btn ghost" id="restart">Start over</button>
+              </div>
+              <p class="hint" style="margin-top: 16px">
+                Estimates are a guide — final price is confirmed at drop-off.
+              </p>
+            </div>
+          </div>
+
+          <div class="quiz-nav" id="quizNav">
+            <button class="linkbtn" id="backBtn" style="visibility: hidden">
+              ← Back
+            </button>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="eyebrow">Our services</div>
+          <h2>Gentle care, thoughtfully priced</h2>
+          <p class="lead">
+            Starting prices for a small dog. Size and pet type may adjust the
+            final cost.
+          </p>
+        </div>
+        <div class="grid" id="serviceGrid"></div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="eyebrow">Gallery</div>
+          <h2>Freshly pampered friends</h2>
+          <p class="lead">
+            A peek at some of our happiest clients. (Photo placeholders — swap
+            in your own images.)
+          </p>
+        </div>
+        <div class="gallery reveal">
+          <div class="ph"><span>🐶</span>Photo 1</div>
+          <div class="ph"><span>🐱</span>Photo 2</div>
+          <div class="ph"><span>🐩</span>Photo 3</div>
+          <div class="ph"><span>🐕</span>Photo 4</div>
+          <div class="ph"><span>🛁</span>Photo 5</div>
+          <div class="ph"><span>✨</span>Photo 6</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="wrap">
+        <div class="reveal" style="text-align: center">
+          <div class="eyebrow">Book a visit</div>
+          <h2>Reserve your spot</h2>
+          <p class="lead" style="margin-inline: auto">
+            Tell us a little about your pet and we'll confirm by phone.
+          </p>
+        </div>
+        <form id="bookForm" class="reveal" novalidate>
+          <div class="fields">
+            <div class="field">
+              <label for="pet">Pet name</label>
+              <input id="pet" name="pet" required placeholder="e.g. Biscuit" />
+            </div>
+            <div class="field">
+              <label for="owner">Owner name</label>
+              <input
+                id="owner"
+                name="owner"
+                required
+                placeholder="Your full name"
+              />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="(555) 123-4567"
+                pattern="[0-9+()\-\s.]{7,}"
+              />
+              <div class="hint">We'll call to confirm your appointment.</div>
+            </div>
+            <div class="field">
+              <label for="date">Preferred date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+            <div class="field" id="estimateNote" style="display: none"></div>
+            <button class="btn" type="submit" style="width: 100%">
+              Request appointment
+            </button>
+          </div>
+          <div class="thanks" id="thanks" role="status" aria-live="polite">
+            <div class="big">🌿</div>
+            <h3 style="margin: 10px 0" id="thanksTitle">Thank you!</h3>
+            <p id="thanksMsg" class="hint"></p>
+            <button
+              type="button"
+              class="btn ghost"
+              id="again"
+              style="margin-top: 20px"
+            >
+              Book another
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="yr"></span> Mindful Paws · Where grooming meets calm 🐾
+    </footer>
+
+    <script>
+      (function () {
+        const SERVICES = [
+          {
+            id: "bath",
+            name: "Bath & Brush",
+            price: 45,
+            icon: "🛁",
+            desc: "A soothing wash, blow-dry and thorough brush-out.",
+          },
+          {
+            id: "full",
+            name: "Full Groom",
+            price: 75,
+            icon: "✂️",
+            desc: "Bath, haircut, nail trim, ear cleaning and finishing spritz.",
+          },
+          {
+            id: "spa",
+            name: "Spa Day",
+            price: 120,
+            icon: "🌿",
+            desc: "Our full groom plus aromatherapy, massage and teeth brushing.",
+          },
+          {
+            id: "puppy",
+            name: "Puppy First Groom",
+            price: 55,
+            icon: "🐶",
+            desc: "A gentle, low-stress introduction for pups under 6 months.",
+            dogOnly: true,
+          },
+        ];
+        const TYPE_ADJ = { dog: 0, cat: 10, rabbit: -10 };
+        const TYPE_NAME = { dog: "Dog", cat: "Cat", rabbit: "Small pet" };
+        const SIZE_ADJ = { small: 0, medium: 10, large: 25 };
+        const $ = (s, c = document) => c.querySelector(s);
+        const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+        // Services grid
+        $("#serviceGrid").innerHTML = SERVICES.map(
+          (s) => `
+    <div class="card reveal"><div class="ic">${s.icon}</div><h3>${s.name}</h3><p>${s.desc}</p><div class="p">$${s.price}</div></div>`,
+        ).join("");
+
+        // Quiz
+        const steps = $$(".step");
+        const answers = {};
+        let cur = 0;
+
+        function renderServiceOpts() {
+          const opts = SERVICES.filter(
+            (s) => !s.dogOnly || answers.type === "dog",
+          );
+          $("#serviceOpts").innerHTML = opts
+            .map(
+              (s) =>
+                `<button class="opt" data-key="service" data-value="${s.id}"><span class="em">${s.icon}</span>${s.name}<small>from $${s.price}</small></button>`,
+            )
+            .join("");
+        }
+
+        function show(n, back) {
+          steps[cur].classList.remove("active", "back");
+          cur = n;
+          steps[cur].classList.toggle("back", !!back);
+          steps[cur].classList.add("active");
+          const done = cur === 3;
+          $("#bar").style.width = (cur / 3) * 100 + "%";
+          $("#stepLabel").textContent = done
+            ? "All done"
+            : `Question ${cur + 1} of 3`;
+          $("#backBtn").style.visibility =
+            cur === 0 || done ? "hidden" : "visible";
+          $("#quizNav").style.display = done ? "none" : "flex";
+          if (done) showResult();
+        }
+
+        function showResult() {
+          const s = SERVICES.find((x) => x.id === answers.service);
+          const total = Math.max(
+            s.price + TYPE_ADJ[answers.type] + SIZE_ADJ[answers.size],
+            20,
+          );
+          answers.total = total;
+          $("#estimate").textContent = "$" + total;
+          const lines = [
+            `${TYPE_NAME[answers.type]} · ${answers.size} size`,
+            `${s.name} (base $${s.price})`,
+          ];
+          const adj = TYPE_ADJ[answers.type] + SIZE_ADJ[answers.size];
+          if (adj)
+            lines.push(
+              `${adj > 0 ? "+" : "−"}$${Math.abs(adj)} for pet type & size`,
+            );
+          $("#summary").innerHTML = lines.map((l) => `<li>${l}</li>`).join("");
+          const note = $("#estimateNote");
+          note.style.display = "block";
+          note.innerHTML = `<div class="hint" style="background:#e8f0ea;padding:12px 14px;border-radius:12px;color:var(--ink)">
+      Your estimate: <strong>${s.name} — $${total}</strong> (${TYPE_NAME[answers.type]}, ${answers.size})</div>`;
+        }
+
+        $(".quiz-card").addEventListener("click", (e) => {
+          const b = e.target.closest(".opt");
+          if (!b) return;
+          const key = b.dataset.key;
+          answers[key] = b.dataset.value;
+          $$(".opt", steps[cur]).forEach((o) =>
+            o.classList.toggle("selected", o === b),
+          );
+          if (key === "type") {
+            delete answers.service;
+            renderServiceOpts();
+          }
+          setTimeout(() => show(cur + 1), 280);
+        });
+        $("#backBtn").addEventListener(
+          "click",
+          () => cur > 0 && show(cur - 1, true),
+        );
+        $("#restart").addEventListener("click", () => {
+          Object.keys(answers).forEach((k) => delete answers[k]);
+          $$(".opt.selected").forEach((o) => o.classList.remove("selected"));
+          $("#estimateNote").style.display = "none";
+          show(0, true);
+        });
+        renderServiceOpts();
+
+        // Form
+        const form = $("#bookForm");
+        const dateEl = $("#date");
+        const today = new Date();
+        today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+        dateEl.min = today.toISOString().slice(0, 10);
+        $("#yr").textContent = new Date().getFullYear();
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const bad = $$("input", form).find(
+            (i) => !i.value.trim() || !i.checkValidity(),
+          );
+          if (bad) {
+            bad.reportValidity();
+            bad.focus();
+            return;
+          }
+          const d = new Date(dateEl.value + "T00:00");
+          const nice = d.toLocaleDateString(undefined, {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          });
+          $("#thanksTitle").textContent =
+            `Thank you, ${$("#owner").value.trim()}!`;
+          $("#thanksMsg").textContent =
+            `We've received a request for ${$("#pet").value.trim()} on ${nice}. We'll call ${$("#phone").value.trim()} to confirm.`;
+          form.classList.add("done");
+        });
+        $("#again").addEventListener("click", () => {
+          form.reset();
+          form.classList.remove("done");
+        });
+
+        // Scroll reveal
+        const io = new IntersectionObserver(
+          (es) =>
+            es.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("in");
+                io.unobserve(en.target);
+              }
+            }),
+          { threshold: 0.12 },
+        );
+        $$(".reveal").forEach((el, i) => {
+          el.style.transitionDelay =
+            (el.classList.contains("card") ? (i % 4) * 80 : 0) + "ms";
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

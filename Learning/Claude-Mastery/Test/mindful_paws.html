@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindful Paws — Boutique Pet Grooming</title>
+<style>
+  :root {
+    --sage: #7a9e87;
+    --sage-dark: #5b7d68;
+    --cream: #faf6f0;
+    --sand: #efe6d8;
+    --ink: #2f3a33;
+    --muted: #6b756e;
+    --accent: #d9a47a;
+    --white: #ffffff;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(47, 58, 51, 0.08);
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; line-height: 1.2; }
+  a { color: inherit; text-decoration: none; }
+  .container { width: min(1100px, 92%); margin: 0 auto; }
+  section { padding: 96px 0; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 10px; }
+  .section-title p { color: var(--muted); max-width: 560px; margin: 0 auto; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: .75rem; color: var(--sage-dark); font-weight: 700; display: block; margin-bottom: 10px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; border: none; cursor: pointer;
+    padding: 14px 30px; border-radius: 999px; font-size: 1rem; font-weight: 600;
+    background: var(--sage); color: var(--white);
+    transition: background .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .btn:hover { background: var(--sage-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(91, 125, 104, .3); }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .btn-outline { background: transparent; color: var(--sage-dark); border: 2px solid var(--sage); }
+  .btn-outline:hover { background: var(--sage); color: var(--white); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease);
+    padding: 22px 0;
+  }
+  nav.scrolled { background: rgba(250, 246, 240, .95); backdrop-filter: blur(8px); box-shadow: 0 2px 20px rgba(0,0,0,.06); padding: 14px 0; }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: Georgia, serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { font-weight: 500; position: relative; }
+  .nav-links a:not(.btn)::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0;
+    background: var(--sage); transition: width .3s var(--ease);
+  }
+  .nav-links a:not(.btn):hover::after { width: 100%; }
+  .nav-links .btn { padding: 10px 22px; font-size: .9rem; }
+  .menu-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 80% 20%, #e3ece5 0%, transparent 50%),
+                radial-gradient(circle at 10% 90%, #f3e2d2 0%, transparent 45%), var(--cream);
+  }
+  .hero .container { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); margin-bottom: 20px; }
+  .hero h1 em { color: var(--sage-dark); font-style: italic; }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 480px; margin-bottom: 34px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-art {
+    aspect-ratio: 1; border-radius: 50% 50% 46% 54% / 55% 45% 55% 45%;
+    background: linear-gradient(145deg, var(--sage) 0%, #a9c4b1 100%);
+    display: grid; place-items: center; font-size: clamp(6rem, 14vw, 10rem);
+    box-shadow: var(--shadow); animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(2deg); } }
+  .hero-badges { display: flex; gap: 26px; margin-top: 44px; flex-wrap: wrap; }
+  .hero-badges div { font-size: .9rem; color: var(--muted); }
+  .hero-badges strong { display: block; font-size: 1.5rem; color: var(--ink); font-family: Georgia, serif; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* Quiz */
+  #quiz { background: var(--white); }
+  .quiz-card {
+    max-width: 680px; margin: 0 auto; background: var(--cream); border-radius: 26px;
+    padding: 44px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .progress { height: 6px; background: var(--sand); border-radius: 99px; margin-bottom: 14px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0; background: var(--sage); border-radius: 99px; transition: width .5s var(--ease); }
+  .step-label { font-size: .85rem; color: var(--muted); margin-bottom: 26px; }
+  .quiz-stage { position: relative; min-height: 280px; }
+  .quiz-step {
+    position: absolute; inset: 0; opacity: 0; transform: translateX(40px); pointer-events: none;
+    transition: opacity .45s var(--ease), transform .45s var(--ease);
+  }
+  .quiz-step.active { opacity: 1; transform: translateX(0); pointer-events: auto; position: relative; }
+  .quiz-step.leaving { opacity: 0; transform: translateX(-40px); }
+  .quiz-step h3 { font-size: 1.6rem; margin-bottom: 22px; }
+  .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+  .option {
+    background: var(--white); border: 2px solid transparent; border-radius: 16px; padding: 20px 14px;
+    cursor: pointer; text-align: center; font-size: 1rem; font-family: inherit; color: var(--ink);
+    transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease), background .25s;
+  }
+  .option:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,.06); }
+  .option.selected { border-color: var(--sage); background: #eef4f0; }
+  .option:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .option .icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+  .option small { display: block; color: var(--muted); font-size: .8rem; margin-top: 2px; }
+  .quiz-nav { display: flex; justify-content: space-between; margin-top: 30px; gap: 12px; }
+  .result { text-align: center; }
+  .result .price {
+    font-family: Georgia, serif; font-size: 4rem; color: var(--sage-dark); margin: 6px 0 4px;
+  }
+  .result .summary { color: var(--muted); margin-bottom: 8px; }
+  .result .breakdown { font-size: .9rem; color: var(--muted); background: var(--white); border-radius: 14px; padding: 14px 18px; display: inline-block; text-align: left; margin: 12px 0 24px; }
+  .result .breakdown div { display: flex; justify-content: space-between; gap: 30px; }
+  .result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Services */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
+  .service {
+    background: var(--white); border-radius: var(--radius); padding: 34px 26px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .service:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(47,58,51,.12); }
+  .service .icon { width: 58px; height: 58px; border-radius: 16px; background: #eef4f0; display: grid; place-items: center; font-size: 1.8rem; margin-bottom: 18px; }
+  .service h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .service p { color: var(--muted); font-size: .95rem; flex: 1; margin-bottom: 18px; }
+  .service .service-price { font-family: Georgia, serif; font-size: 2rem; color: var(--sage-dark); }
+  .service .service-price span { font-size: .9rem; color: var(--muted); font-family: inherit; }
+  .service .btn { margin-top: 16px; padding: 10px 20px; font-size: .9rem; align-self: flex-start; }
+
+  /* Gallery */
+  #gallery { background: var(--sand); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 16px; }
+  .gallery-item {
+    border-radius: var(--radius); overflow: hidden; position: relative; cursor: pointer;
+    display: grid; place-items: center; font-size: 3.4rem; color: rgba(255,255,255,.9);
+  }
+  .gallery-item .ph { position: absolute; inset: 0; display: grid; place-items: center; transition: transform .6s var(--ease); }
+  .gallery-item:hover .ph { transform: scale(1.08); }
+  .gallery-item .caption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px; font-size: .9rem; color: var(--white);
+    background: linear-gradient(transparent, rgba(0,0,0,.45)); transform: translateY(100%); transition: transform .4s var(--ease);
+  }
+  .gallery-item:hover .caption, .gallery-item:focus-visible .caption { transform: none; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.tall { grid-row: span 2; }
+  .g1 .ph { background: linear-gradient(135deg, #a9c4b1, #7a9e87); }
+  .g2 .ph { background: linear-gradient(135deg, #e7c3a2, #d9a47a); }
+  .g3 .ph { background: linear-gradient(135deg, #c8b8d9, #9d8bb5); }
+  .g4 .ph { background: linear-gradient(135deg, #b5cfd8, #7fa6b5); }
+  .g5 .ph { background: linear-gradient(135deg, #e9d79f, #cdb36a); }
+  .g6 .ph { background: linear-gradient(135deg, #e3b4b4, #c98787); }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(20, 26, 22, .8); z-index: 200; display: grid; place-items: center;
+    opacity: 0; pointer-events: none; transition: opacity .35s var(--ease);
+  }
+  .lightbox.open { opacity: 1; pointer-events: auto; }
+  .lightbox-inner {
+    width: min(620px, 90vw); aspect-ratio: 4/3; border-radius: 22px; display: grid; place-items: center;
+    font-size: 7rem; position: relative; transform: scale(.9); transition: transform .35s var(--ease);
+  }
+  .lightbox.open .lightbox-inner { transform: scale(1); }
+  .lightbox-caption { position: absolute; bottom: -44px; left: 0; right: 0; text-align: center; color: var(--white); font-size: 1rem; }
+  .lightbox-close { position: absolute; top: -48px; right: 0; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
+
+  /* Booking */
+  .booking-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+  .booking-info h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 14px; }
+  .booking-info p { color: var(--muted); margin-bottom: 24px; }
+  .info-list { list-style: none; display: grid; gap: 14px; }
+  .info-list li { display: flex; gap: 12px; align-items: center; }
+  .info-list span { width: 40px; height: 40px; border-radius: 12px; background: #eef4f0; display: grid; place-items: center; }
+  .estimate-chip {
+    margin-top: 26px; background: var(--white); border-left: 4px solid var(--sage); padding: 14px 18px;
+    border-radius: 12px; box-shadow: var(--shadow); display: none; animation: fadeIn .5s var(--ease);
+  }
+  .estimate-chip.show { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  form { background: var(--white); border-radius: 24px; padding: 38px; box-shadow: var(--shadow); position: relative; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+  .field input, .field select {
+    width: 100%; padding: 13px 16px; border-radius: 12px; border: 2px solid var(--sand); background: var(--cream);
+    font-size: 1rem; font-family: inherit; color: var(--ink); transition: border-color .25s, background .25s, box-shadow .25s;
+  }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--sage); background: var(--white); box-shadow: 0 0 0 4px rgba(122,158,135,.15); }
+  .field.invalid input, .field.invalid select { border-color: #c96b6b; }
+  .error { color: #b85555; font-size: .8rem; margin-top: 5px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s, opacity .3s; }
+  .field.invalid .error { max-height: 40px; opacity: 1; }
+  form .btn { width: 100%; margin-top: 6px; }
+  .success {
+    position: absolute; inset: 0; background: var(--white); border-radius: 24px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; padding: 38px;
+    opacity: 0; pointer-events: none; transform: scale(.96); transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .success.show { opacity: 1; pointer-events: auto; transform: none; }
+  .success .check { width: 80px; height: 80px; border-radius: 50%; background: #eef4f0; display: grid; place-items: center; font-size: 2.4rem; margin-bottom: 18px; }
+  .success h3 { font-size: 1.7rem; margin-bottom: 10px; }
+  .success p { color: var(--muted); margin-bottom: 22px; }
+
+  footer { background: var(--ink); color: #c9d1cb; padding: 44px 0; text-align: center; font-size: .9rem; }
+  footer .logo { justify-content: center; color: var(--white); margin-bottom: 8px; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .hero .container, .booking-wrap { grid-template-columns: 1fr; }
+    .hero-art { max-width: 320px; margin: 0 auto; order: -1; }
+    .hero { padding-top: 110px; text-align: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .hero-actions, .hero-badges { justify-content: center; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .menu-toggle { display: block; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream);
+      padding: 0 24px; gap: 18px; max-height: 0; overflow: hidden; transition: max-height .4s var(--ease), padding .4s var(--ease);
+      box-shadow: 0 10px 20px rgba(0,0,0,.05);
+    }
+    .nav-links.open { max-height: 400px; padding: 24px; }
+  }
+  @media (max-width: 540px) {
+    section { padding: 72px 0; }
+    .quiz-card, form { padding: 26px; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-auto-rows: 150px; }
+    .result .price { font-size: 3.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#home" class="logo">🐾 Mindful Paws</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#quiz">Price Quiz</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#booking" class="btn">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="home">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Boutique Pet Grooming Salon</span>
+      <h1>Where grooming <em>meets calm</em></h1>
+      <p>At Mindful Paws, every visit is slow, gentle, and stress-free. Soft music, low-noise tools, and patient hands, because your pet deserves to feel as good as they look.</p>
+      <div class="hero-actions">
+        <a href="#quiz" class="btn">Get a Price Estimate</a>
+        <a href="#booking" class="btn btn-outline">Book an Appointment</a>
+      </div>
+      <div class="hero-badges">
+        <div><strong>2,400+</strong>Happy pets</div>
+        <div><strong>4.9★</strong>Average rating</div>
+        <div><strong>1:1</strong>Groomer attention</div>
+      </div>
+    </div>
+    <div class="hero-art reveal" aria-hidden="true">🐶</div>
+  </div>
+</header>
+
+<!-- Booking Quiz -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="eyebrow">Quick Estimate</span>
+      <h2>Find your pet's perfect pamper</h2>
+      <p>Answer three quick questions and we'll give you a personalized price estimate.</p>
+    </div>
+
+    <div class="quiz-card reveal">
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="step-label" id="stepLabel">Question 1 of 3</div>
+
+      <div class="quiz-stage" id="quizStage">
+        <!-- Step 1 -->
+        <div class="quiz-step active" data-step="0">
+          <h3>What kind of pet do you have?</h3>
+          <div class="options" data-key="pet">
+            <button type="button" class="option" data-value="dog" data-label="Dog"><span class="icon">🐕</span>Dog</button>
+            <button type="button" class="option" data-value="cat" data-label="Cat"><span class="icon">🐈</span>Cat<small>Feline specialists</small></button>
+            <button type="button" class="option" data-value="other" data-label="Small pet"><span class="icon">🐇</span>Small Pet<small>Rabbits & more</small></button>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="quiz-step" data-step="1">
+          <h3>How big is your pet?</h3>
+          <div class="options" data-key="size">
+            <button type="button" class="option" data-value="small" data-label="Small"><span class="icon">🐾</span>Small<small>Under 20 lbs</small></button>
+            <button type="button" class="option" data-value="medium" data-label="Medium"><span class="icon">🐾</span>Medium<small>20–50 lbs</small></button>
+            <button type="button" class="option" data-value="large" data-label="Large"><span class="icon">🐾</span>Large<small>Over 50 lbs</small></button>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="quiz-step" data-step="2">
+          <h3>Which service are you interested in?</h3>
+          <div class="options" data-key="service">
+            <button type="button" class="option" data-value="bath" data-label="Bath &amp; Brush"><span class="icon">🛁</span>Bath &amp; Brush<small>from $45</small></button>
+            <button type="button" class="option" data-value="full" data-label="Full Groom"><span class="icon">✂️</span>Full Groom<small>from $75</small></button>
+            <button type="button" class="option" data-value="spa" data-label="Spa Day"><span class="icon">🌿</span>Spa Day<small>from $120</small></button>
+            <button type="button" class="option" data-value="puppy" data-label="Puppy First Groom"><span class="icon">🍼</span>Puppy First Groom<small>from $55</small></button>
+          </div>
+        </div>
+        <!-- Result -->
+        <div class="quiz-step result" data-step="3">
+          <span class="eyebrow">Your Estimate</span>
+          <div class="price" id="estimatePrice">$0</div>
+          <div class="summary" id="estimateSummary"></div>
+          <div class="breakdown" id="estimateBreakdown"></div>
+          <div class="result-actions">
+            <button type="button" class="btn" id="bookFromQuiz">Book This Service</button>
+            <button type="button" class="btn btn-outline" id="restartQuiz">Start Over</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-nav" id="quizNav">
+        <button type="button" class="btn btn-outline" id="prevBtn" disabled>← Back</button>
+        <button type="button" class="btn" id="nextBtn" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="eyebrow">Our Services</span>
+      <h2>Gentle care, thoughtfully done</h2>
+      <p>Every service includes a calm welcome, ear cleaning, and a treat to finish.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service reveal">
+        <div class="icon">🛁</div>
+        <h3>Bath &amp; Brush</h3>
+        <p>Warm, soothing bath with natural shampoo, blow-dry, thorough brush-out, and nail trim.</p>
+        <div class="service-price">$45 <span>/ starting</span></div>
+        <button type="button" class="btn btn-outline" data-book="bath">Book</button>
+      </div>
+      <div class="service reveal">
+        <div class="icon">✂️</div>
+        <h3>Full Groom</h3>
+        <p>Everything in Bath &amp; Brush plus a breed-specific haircut, styling, and paw tidy.</p>
+        <div class="service-price">$75 <span>/ starting</span></div>
+        <button type="button" class="btn btn-outline" data-book="full">Book</button>
+      </div>
+      <div class="service reveal">
+        <div class="icon">🌿</div>
+        <h3>Spa Day</h3>
+        <p>Our signature ritual: full groom, aromatherapy, blueberry facial, paw balm, and massage.</p>
+        <div class="service-price">$120 <span>/ starting</span></div>
+        <button type="button" class="btn btn-outline" data-book="spa">Book</button>
+      </div>
+      <div class="service reveal">
+        <div class="icon">🍼</div>
+        <h3>Puppy First Groom</h3>
+        <p>A slow, positive introduction to grooming for pups under 6 months, with lots of praise.</p>
+        <div class="service-price">$55 <span>/ starting</span></div>
+        <button type="button" class="btn btn-outline" data-book="puppy">Book</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2>Fresh from the salon</h2>
+      <p>A peek at some of our calm, happy clients. Click any photo to enlarge.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item g1 wide tall" tabindex="0" data-caption="Bella the Golden, post Spa Day"><div class="ph">🐕</div><div class="caption">Bella the Golden, post Spa Day</div></div>
+      <div class="gallery-item g2" tabindex="0" data-caption="Milo's first puppy groom"><div class="ph">🐶</div><div class="caption">Milo's first puppy groom</div></div>
+      <div class="gallery-item g3" tabindex="0" data-caption="Luna, our calmest cat client"><div class="ph">🐈</div><div class="caption">Luna, our calmest cat client</div></div>
+      <div class="gallery-item g4" tabindex="0" data-caption="Teddy's fresh Full Groom"><div class="ph">🐩</div><div class="caption">Teddy's fresh Full Groom</div></div>
+      <div class="gallery-item g5" tabindex="0" data-caption="Clover the bunny, brushed and fluffy"><div class="ph">🐇</div><div class="caption">Clover the bunny, brushed and fluffy</div></div>
+      <div class="gallery-item g6 wide" tabindex="0" data-caption="Our tranquil grooming suite"><div class="ph">🌿</div><div class="caption">Our tranquil grooming suite</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+    <span id="lightboxEmoji"></span>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<!-- Booking -->
+<section id="booking">
+  <div class="container booking-wrap">
+    <div class="booking-info reveal">
+      <span class="eyebrow">Book a Visit</span>
+      <h2>Reserve your calm appointment</h2>
+      <p>Tell us a little about your pet and pick a date. We'll call to confirm your time within one business day.</p>
+      <ul class="info-list">
+        <li><span>📍</span>128 Willow Lane, Suite 2</li>
+        <li><span>🕘</span>Tue–Sat, 9:00am – 6:00pm</li>
+        <li><span>📞</span>(555) 274-PAWS</li>
+      </ul>
+      <div class="estimate-chip" id="estimateChip"></div>
+    </div>
+
+    <form id="bookingForm" class="reveal" novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="petName">Pet Name</label>
+          <input type="text" id="petName" name="petName" placeholder="e.g. Biscuit" autocomplete="off">
+          <div class="error">Please enter your pet's name.</div>
+        </div>
+        <div class="field">
+          <label for="ownerName">Owner Name</label>
+          <input type="text" id="ownerName" name="ownerName" placeholder="Your full name" autocomplete="name">
+          <div class="error">Please enter your name.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel">
+          <div class="error">Please enter a valid phone number.</div>
+        </div>
+        <div class="field">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date">
+          <div class="error">Please choose a future date.</div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="serviceSelect">Service <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <select id="serviceSelect" name="service">
+          <option value="">Not sure yet</option>
+          <option value="bath">Bath &amp; Brush ($45)</option>
+          <option value="full">Full Groom ($75)</option>
+          <option value="spa">Spa Day ($120)</option>
+          <option value="puppy">Puppy First Groom ($55)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Request Appointment</button>
+
+      <div class="success" id="successPanel" aria-live="polite">
+        <div class="check">✓</div>
+        <h3>You're all set!</h3>
+        <p id="successMsg"></p>
+        <button type="button" class="btn btn-outline" id="newBooking">Book Another Pet</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">🐾 Mindful Paws</div>
+  <p>Where grooming meets calm · © <span id="year"></span> Mindful Paws Boutique Grooming</p>
+</footer>
+
+<script>
+(function () {
+  // ---------- Data ----------
+  const SERVICES = {
+    bath:  { name: "Bath & Brush",      price: 45 },
+    full:  { name: "Full Groom",        price: 75 },
+    spa:   { name: "Spa Day",           price: 120 },
+    puppy: { name: "Puppy First Groom", price: 55 }
+  };
+  const SIZE_ADJ = { small: 0, medium: 15, large: 30 };
+  const PET_ADJ  = { dog: 0, cat: 10, other: -10 };
+  const PET_LABEL = { dog: "dog", cat: "cat", other: "small pet" };
+
+  // ---------- Nav ----------
+  const navbar = document.getElementById("navbar");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const onScroll = () => navbar.classList.toggle("scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  menuToggle.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", open);
+  });
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }));
+
+  // ---------- Reveal on scroll ----------
+  const revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("visible"));
+  }
+
+  // ---------- Quiz ----------
+  const steps = document.querySelectorAll(".quiz-step");
+  const keys = ["pet", "size", "service"];
+  const answers = {};
+  let current = 0;
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const progressBar = document.getElementById("progressBar");
+  const stepLabel = document.getElementById("stepLabel");
+  const quizNav = document.getElementById("quizNav");
+
+  function goTo(index) {
+    if (index === current) return;
+    const from = steps[current];
+    const to = steps[index];
+    from.classList.add("leaving");
+    from.classList.remove("active");
+    setTimeout(() => from.classList.remove("leaving"), 450);
+    to.classList.add("active");
+    current = index;
+    updateUI();
+    const focusTarget = to.querySelector(".option.selected, .option, .btn");
+    if (focusTarget) setTimeout(() => focusTarget.focus({ preventScroll: true }), 300);
+  }
+
+  function updateUI() {
+    const isResult = current === 3;
+    progressBar.style.width = (isResult ? 100 : (current / 3) * 100) + "%";
+    stepLabel.textContent = isResult ? "All done!" : `Question ${current + 1} of 3`;
+    quizNav.style.display = isResult ? "none" : "flex";
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = !answers[keys[current]];
+    nextBtn.textContent = current === 2 ? "See Estimate →" : "Next →";
+    if (isResult) showResult();
+  }
+
+  function calcEstimate() {
+    const s = SERVICES[answers.service];
+    const sizeAdj = SIZE_ADJ[answers.size];
+    const petAdj = PET_ADJ[answers.pet];
+    return { base: s.price, sizeAdj, petAdj, total: Math.max(s.price + sizeAdj + petAdj, 30) };
+  }
+
+  function fmtAdj(n) { return (n >= 0 ? "+$" : "−$") + Math.abs(n); }
+
+  function animateNumber(el, to) {
+    const start = performance.now(), dur = 900;
+    function frame(t) {
+      const p = Math.min((t - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = "$" + Math.round(to * eased);
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function showResult() {
+    const e = calcEstimate();
+    const sizeLabel = answers.size.charAt(0).toUpperCase() + answers.size.slice(1);
+    animateNumber(document.getElementById("estimatePrice"), e.total);
+    document.getElementById("estimateSummary").textContent =
+      `${SERVICES[answers.service].name} for a ${answers.size} ${PET_LABEL[answers.pet]}`;
+    document.getElementById("estimateBreakdown").innerHTML =
+      `<div><span>${SERVICES[answers.service].name}</span><span>$${e.base}</span></div>` +
+      `<div><span>${sizeLabel} size</span><span>${fmtAdj(e.sizeAdj)}</span></div>` +
+      `<div><span>${PET_LABEL[answers.pet].replace(/^./, c => c.toUpperCase())} care</span><span>${fmtAdj(e.petAdj)}</span></div>`;
+  }
+
+  document.querySelectorAll(".options").forEach(group => {
+    const key = group.dataset.key;
+    group.querySelectorAll(".option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        group.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
+        opt.classList.add("selected");
+        answers[key] = opt.dataset.value;
+        updateUI();
+        // Auto-advance after a short pause for a smooth flow
+        const stepAt = current;
+        setTimeout(() => { if (current === stepAt && current < 3) goTo(current + 1); }, 380);
+      });
+    });
+  });
+
+  nextBtn.addEventListener("click", () => { if (answers[keys[current]] && current < 3) goTo(current + 1); });
+  prevBtn.addEventListener("click", () => { if (current > 0) goTo(current - 1); });
+
+  document.getElementById("restartQuiz").addEventListener("click", () => {
+    keys.forEach(k => delete answers[k]);
+    document.querySelectorAll(".option.selected").forEach(o => o.classList.remove("selected"));
+    goTo(0);
+  });
+
+  const estimateChip = document.getElementById("estimateChip");
+  const serviceSelect = document.getElementById("serviceSelect");
+
+  document.getElementById("bookFromQuiz").addEventListener("click", () => {
+    const e = calcEstimate();
+    serviceSelect.value = answers.service;
+    estimateChip.innerHTML = `<strong>Your quiz estimate: $${e.total}</strong><br>` +
+      `<span style="color:var(--muted);font-size:.9rem">${SERVICES[answers.service].name} · ${answers.size} ${PET_LABEL[answers.pet]}</span>`;
+    estimateChip.classList.remove("show"); void estimateChip.offsetWidth; estimateChip.classList.add("show");
+    scrollToBooking();
+  });
+
+  function scrollToBooking() {
+    document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => document.getElementById("petName").focus({ preventScroll: true }), 700);
+  }
+
+  document.querySelectorAll("[data-book]").forEach(btn => btn.addEventListener("click", () => {
+    serviceSelect.value = btn.dataset.book;
+    scrollToBooking();
+  }));
+
+  updateUI();
+
+  // ---------- Gallery lightbox ----------
+  const lightbox = document.getElementById("lightbox");
+  const lbInner = document.getElementById("lightboxInner");
+  const lbEmoji = document.getElementById("lightboxEmoji");
+  const lbCaption = document.getElementById("lightboxCaption");
+  let lastFocus = null;
+
+  function openLightbox(item) {
+    lastFocus = item;
+    const ph = item.querySelector(".ph");
+    lbInner.style.background = getComputedStyle(ph).backgroundImage;
+    lbEmoji.textContent = ph.textContent;
+    lbCaption.textContent = item.dataset.caption;
+    lightbox.classList.add("open");
+    document.getElementById("lightboxClose").focus();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll(".gallery-item").forEach(item => {
+    item.addEventListener("click", () => openLightbox(item));
+    item.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(item); } });
+  });
+  document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox(); });
+
+  // ---------- Booking form ----------
+  const form = document.getElementById("bookingForm");
+  const dateInput = document.getElementById("date");
+  const today = new Date();
+  const todayStr = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split("T")[0];
+  dateInput.min = todayStr;
+
+  const validators = {
+    petName: v => v.trim().length > 0,
+    ownerName: v => v.trim().length > 1,
+    phone: v => v.replace(/\D/g, "").length >= 10,
+    date: v => !!v && v >= todayStr
+  };
+
+  function validateField(input) {
+    const ok = validators[input.id](input.value);
+    input.closest(".field").classList.toggle("invalid", !ok);
+    return ok;
+  }
+
+  Object.keys(validators).forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener("blur", () => { if (input.value) validateField(input); });
+    input.addEventListener("input", () => {
+      if (input.closest(".field").classList.contains("invalid")) validateField(input);
+    });
+  });
+
+  // Light phone formatting for US-style numbers
+  const phoneInput = document.getElementById("phone");
+  phoneInput.addEventListener("input", () => {
+    const d = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+    if (d.length > 6) phoneInput.value = `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+    else if (d.length > 3) phoneInput.value = `(${d.slice(0,3)}) ${d.slice(3)}`;
+    else phoneInput.value = d;
+  });
+
+  const successPanel = document.getElementById("successPanel");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    let firstInvalid = null;
+    Object.keys(validators).forEach(id => {
+      const input = document.getElementById(id);
+      if (!validateField(input) && !firstInvalid) firstInvalid = input;
+    });
+    if (firstInvalid) { firstInvalid.focus(); return; }
+
+    const data = Object.fromEntries(new FormData(form));
+    const dateNice = new Date(data.date + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+    const svc = data.service ? ` for a ${SERVICES[data.service].name}` : "";
+    const safe = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    document.getElementById("successMsg").innerHTML =
+      `Thanks, ${safe(data.ownerName.trim())}! We've received your request for <strong>${safe(data.petName.trim())}</strong>${svc} on ${dateNice}. ` +
+      `We'll call you at ${safe(data.phone)} to confirm a time.`;
+    successPanel.classList.add("show");
+  });
+
+  document.getElementById("newBooking").addEventListener("click", () => {
+    form.reset();
+    form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+    estimateChip.classList.remove("show");
+    successPanel.classList.remove("show");
+    setTimeout(() => document.getElementById("petName").focus(), 300);
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

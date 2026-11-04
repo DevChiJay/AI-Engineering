@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mindful Paws | Where grooming meets calm</title>
+    <meta
+      name="description"
+      content="Mindful Paws is a boutique pet grooming salon. Slow, low-stress grooming for dogs and cats."
+    />
+    <style>
+      :root {
+        --ink: #232640;
+        --ink-soft: #4a4e6b;
+        --mist: #ebeef4;
+        --pebble: #d3d9e5;
+        --sage: #8fb3a0;
+        --sage-deep: #3f6b58;
+        --sun: #f3d98c;
+        --white: #fbfcfe;
+        --err: #a3374a;
+        --serif:
+          "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+          Georgia, serif;
+        --sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        --ease: cubic-bezier(0.45, 0.05, 0.25, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--mist);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .wrap {
+        width: min(1120px, 100% - 2.5rem);
+        margin-inline: auto;
+      }
+      section {
+        padding: clamp(4.5rem, 10vw, 8rem) 0;
+      }
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--ink);
+        color: var(--white);
+        padding: 0.6rem 1rem;
+        z-index: 99;
+      }
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+      }
+
+      /* Nav */
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--mist) 88%, transparent);
+        backdrop-filter: blur(10px);
+      }
+      header.nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem 0;
+      }
+      .logo {
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .logo svg {
+        width: 26px;
+        height: 26px;
+      }
+      nav ul {
+        display: flex;
+        gap: 1.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      nav a:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+      @media (max-width: 680px) {
+        nav li:not(:last-child) {
+          display: none;
+        }
+      }
+
+      /* Buttons */
+      .btn {
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 2px solid var(--ink);
+        background: var(--ink);
+        color: var(--white);
+        transition:
+          background 0.35s var(--ease),
+          color 0.35s var(--ease),
+          transform 0.35s var(--ease);
+      }
+      .btn:hover {
+        background: var(--sun);
+        color: var(--ink);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--ink);
+      }
+      .btn.ghost:hover {
+        background: var(--ink);
+        color: var(--white);
+      }
+      .btn.small {
+        padding: 0.55rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: clamp(3rem, 8vw, 6rem);
+        overflow: hidden;
+      }
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(3rem, 8.2vw, 6.6rem);
+      }
+      .hero h1 span {
+        display: block;
+      }
+      .hero h1 span:nth-child(2) {
+        padding-left: 0.9em;
+        color: var(--sage-deep);
+        font-style: italic;
+      }
+      .hero p.lede {
+        max-width: 30rem;
+        margin: 1.75rem 0 2.25rem;
+        color: var(--ink-soft);
+        font-size: 1.15rem;
+      }
+      .hero .actions {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .breath {
+        position: relative;
+        aspect-ratio: 1;
+        width: min(100%, 460px);
+        justify-self: center;
+        display: grid;
+        place-items: center;
+      }
+      .breath .ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        animation: breathe 9s var(--ease) infinite;
+      }
+      .breath .r1 {
+        background: var(--pebble);
+      }
+      .breath .r2 {
+        inset: 13%;
+        background: var(--sage);
+        animation-delay: 0.35s;
+        opacity: 0.85;
+      }
+      .breath .r3 {
+        inset: 28%;
+        background: var(--sun);
+        animation-delay: 0.7s;
+      }
+      .breath .paw {
+        position: relative;
+        width: 28%;
+        color: var(--ink);
+        animation: breathe-small 9s var(--ease) infinite;
+        animation-delay: 0.7s;
+      }
+      .breath-label {
+        position: absolute;
+        bottom: -0.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--serif);
+        font-style: italic;
+        color: var(--ink-soft);
+        white-space: nowrap;
+      }
+      .breath-label::after {
+        content: "Breathe in";
+        animation: label 9s steps(1) infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(0.82);
+        }
+        44% {
+          transform: scale(1);
+        }
+        55% {
+          transform: scale(1);
+        }
+      }
+      @keyframes breathe-small {
+        0%,
+        100% {
+          transform: scale(0.9);
+        }
+        44%,
+        55% {
+          transform: scale(1.1);
+        }
+      }
+      @keyframes label {
+        0% {
+          content: "Breathe in";
+        }
+        44% {
+          content: "Hold";
+        }
+        55% {
+          content: "Breathe out";
+        }
+      }
+      @media (max-width: 820px) {
+        .hero .wrap {
+          grid-template-columns: 1fr;
+        }
+        .breath {
+          width: min(80%, 340px);
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      /* Section heads */
+      .head {
+        max-width: 38rem;
+        margin-bottom: 3rem;
+      }
+      .head h2 {
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+      }
+      .head p {
+        margin-top: 1rem;
+        color: var(--ink-soft);
+      }
+
+      /* Quiz */
+      .quiz-section {
+        background: var(--ink);
+        color: var(--white);
+      }
+      .quiz-section .head p {
+        color: #b9bed6;
+      }
+      .quiz {
+        background: var(--white);
+        color: var(--ink);
+        border-radius: 28px;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        max-width: 760px;
+      }
+      .progress {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      .progress i {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--pebble);
+        position: relative;
+        overflow: hidden;
+      }
+      .progress i::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--sage-deep);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s var(--ease);
+      }
+      .progress i.done::after {
+        transform: scaleX(1);
+      }
+      .step {
+        transition:
+          opacity 0.35s var(--ease),
+          transform 0.35s var(--ease);
+      }
+      .step.out {
+        opacity: 0;
+        transform: translateX(-24px);
+      }
+      .step.in-start {
+        opacity: 0;
+        transform: translateX(24px);
+        transition: none;
+      }
+      .step h3 {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        margin-bottom: 1.5rem;
+      }
+      .step h3:focus {
+        outline: none;
+      }
+      .options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 0.9rem;
+      }
+      .opt {
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        color: inherit;
+        background: var(--mist);
+        border: 2px solid transparent;
+        border-radius: 18px;
+        padding: 1.1rem 1.2rem;
+        transition:
+          border-color 0.3s var(--ease),
+          background 0.3s var(--ease),
+          transform 0.3s var(--ease);
+      }
+      .opt:hover {
+        border-color: var(--sage);
+        transform: translateY(-3px);
+      }
+      .opt[aria-pressed="true"] {
+        border-color: var(--ink);
+        background: var(--sun);
+      }
+      .opt strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+      .opt small {
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+      }
+      .quiz-nav {
+        margin-top: 1.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 2.5rem;
+      }
+      .link-btn {
+        font: inherit;
+        background: none;
+        border: 0;
+        padding: 0.3rem;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        color: var(--ink-soft);
+      }
+      .result .price {
+        font-family: var(--serif);
+        font-size: clamp(3rem, 9vw, 5rem);
+        line-height: 1;
+        margin: 0.5rem 0 1rem;
+        color: var(--sage-deep);
+      }
+      .result .summary {
+        color: var(--ink-soft);
+        max-width: 32rem;
+      }
+      .result .breakdown {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+        max-width: 24rem;
+      }
+      .result .breakdown li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.45rem 0;
+        border-bottom: 1px solid var(--pebble);
+      }
+      .result .actions {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      /* Services menu */
+      .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-width: 820px;
+      }
+      .menu li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.25rem 1rem;
+        padding: 1.75rem 0;
+        border-top: 1px solid var(--pebble);
+      }
+      .menu li:last-child {
+        border-bottom: 1px solid var(--pebble);
+      }
+      .menu h3 {
+        font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+      }
+      .menu .price {
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+        color: var(--sage-deep);
+      }
+      .menu p {
+        grid-column: 1;
+        color: var(--ink-soft);
+        max-width: 34rem;
+      }
+      .menu li {
+        transition:
+          padding-left 0.4s var(--ease),
+          background 0.4s var(--ease);
+      }
+      .menu li:hover {
+        padding-left: 1rem;
+      }
+
+      /* Gallery */
+      .gallery-section {
+        background: var(--white);
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 150px;
+        gap: 1rem;
+      }
+      .ph {
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: var(--ink);
+      }
+      .ph::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .ph svg {
+        position: absolute;
+        right: 12%;
+        top: 18%;
+        width: 34%;
+        opacity: 0.35;
+      }
+      .ph figcaption {
+        position: relative;
+        z-index: 1;
+        background: var(--white);
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+      }
+      .ph:nth-child(1) {
+        grid-column: span 3;
+        grid-row: span 3;
+        border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+        background: var(--sage);
+      }
+      .ph:nth-child(2) {
+        grid-column: span 3;
+        grid-row: span 2;
+        border-radius: 28px;
+        background: var(--sun);
+      }
+      .ph:nth-child(3) {
+        grid-column: span 2;
+        grid-row: span 2;
+        border-radius: 50%;
+        background: var(--pebble);
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .ph:nth-child(4) {
+        grid-column: span 1;
+        grid-row: span 1;
+        border-radius: 28px;
+        background: var(--ink);
+        color: var(--white);
+      }
+      .ph:nth-child(4) figcaption {
+        background: transparent;
+        color: var(--white);
+        padding: 0;
+      }
+      .ph:nth-child(5) {
+        grid-column: span 3;
+        grid-row: span 2;
+        border-radius: 28px 120px 28px 28px;
+        background: #c4d6cc;
+      }
+      .ph:nth-child(6) {
+        grid-column: span 3;
+        grid-row: span 1;
+        border-radius: 999px;
+        background: var(--mist);
+      }
+      .ph {
+        transition: transform 0.5s var(--ease);
+      }
+      .ph:hover {
+        transform: scale(0.98);
+      }
+      @media (max-width: 720px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 130px;
+        }
+        .ph:nth-child(n) {
+          grid-column: span 1;
+          grid-row: span 2;
+        }
+        .ph:nth-child(1),
+        .ph:nth-child(5) {
+          grid-column: span 2;
+        }
+      }
+
+      /* Booking form */
+      .book .wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .book .head {
+        margin-bottom: 0;
+      }
+      .book form,
+      .book .done {
+        background: var(--white);
+        border-radius: 28px;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+      }
+      .field {
+        margin-bottom: 1.25rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+      }
+      input {
+        width: 100%;
+        font: inherit;
+        color: var(--ink);
+        background: var(--mist);
+        border: 2px solid transparent;
+        border-radius: 14px;
+        padding: 0.8rem 1rem;
+        transition:
+          border-color 0.3s var(--ease),
+          background 0.3s var(--ease);
+      }
+      input:hover {
+        border-color: var(--pebble);
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--ink);
+        background: var(--white);
+      }
+      input[aria-invalid="true"] {
+        border-color: var(--err);
+      }
+      .err {
+        color: var(--err);
+        font-size: 0.9rem;
+        margin-top: 0.35rem;
+        min-height: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s var(--ease),
+          opacity 0.3s var(--ease);
+      }
+      .err.show {
+        max-height: 3rem;
+        opacity: 1;
+      }
+      .picked {
+        background: var(--sun);
+        border-radius: 14px;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1.25rem;
+        display: none;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+      }
+      .picked.show {
+        display: flex;
+      }
+      .done {
+        text-align: left;
+        animation: pop 0.6s var(--ease);
+      }
+      .done h3 {
+        font-size: 2.2rem;
+        margin-bottom: 0.75rem;
+      }
+      .done p {
+        color: var(--ink-soft);
+        margin-bottom: 1.5rem;
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (max-width: 820px) {
+        .book .wrap {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      footer {
+        padding: 2.5rem 0;
+        border-top: 1px solid var(--pebble);
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="logo" href="#top" aria-label="Mindful Paws home">
+          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <ellipse cx="16" cy="21" rx="7.5" ry="6" />
+            <ellipse cx="7" cy="13" rx="3" ry="4" />
+            <ellipse cx="25" cy="13" rx="3" ry="4" />
+            <ellipse cx="12.5" cy="7.5" rx="2.8" ry="3.8" />
+            <ellipse cx="19.5" cy="7.5" rx="2.8" ry="3.8" />
+          </svg>
+          Mindful Paws
+        </a>
+        <nav aria-label="Main">
+          <ul>
+            <li><a href="#quiz">Price estimate</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a class="btn small" href="#book">Book a visit</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="wrap">
+          <div>
+            <h1><span>Where grooming</span><span>meets calm</span></h1>
+            <p class="lede">
+              A boutique salon for dogs and cats. One pet at a time, no cages,
+              no dryers blasting, and plenty of pauses.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#quiz">Get a price estimate</a>
+              <a class="btn ghost" href="#book">Book a visit</a>
+            </div>
+          </div>
+          <div
+            class="breath"
+            role="img"
+            aria-label="A slowly expanding and contracting circle with a paw print, a breathing guide"
+          >
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+            <div class="ring r3"></div>
+            <svg
+              class="paw"
+              viewBox="0 0 32 32"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <ellipse cx="16" cy="21" rx="7.5" ry="6" />
+              <ellipse cx="7" cy="13" rx="3" ry="4" />
+              <ellipse cx="25" cy="13" rx="3" ry="4" />
+              <ellipse cx="12.5" cy="7.5" rx="2.8" ry="3.8" />
+              <ellipse cx="19.5" cy="7.5" rx="2.8" ry="3.8" />
+            </svg>
+            <span class="breath-label" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz-section" id="quiz">
+        <div class="wrap">
+          <div class="head">
+            <h2>What will your pet's visit cost?</h2>
+            <p>
+              Answer three quick questions for an estimate. Final price is
+              confirmed when we see your pet's coat.
+            </p>
+          </div>
+          <div class="quiz" id="quizBox" aria-live="polite">
+            <div class="progress" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="step" id="step"></div>
+            <div class="quiz-nav">
+              <button class="link-btn" id="back" type="button" hidden>
+                Back
+              </button>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="wrap">
+          <div class="head">
+            <h2>Services</h2>
+            <p>
+              Starting prices for a small dog or cat. Larger pets cost a little
+              more.
+            </p>
+          </div>
+          <ul class="menu">
+            <li>
+              <h3>Bath &amp; Brush</h3>
+              <span class="price">$45</span>
+              <p>
+                Warm bath, gentle shampoo, blow-dry, full brush-out and ear
+                clean.
+              </p>
+            </li>
+            <li>
+              <h3>Full Groom</h3>
+              <span class="price">$75</span>
+              <p>
+                Everything in the Bath &amp; Brush, plus a haircut or trim, nail
+                clip and paw tidy.
+              </p>
+            </li>
+            <li>
+              <h3>Spa Day</h3>
+              <span class="price">$120</span>
+              <p>
+                A long, unhurried visit: conditioning mask, teeth brushing, paw
+                balm, massage and a full groom.
+              </p>
+            </li>
+            <li>
+              <h3>Puppy First Groom</h3>
+              <span class="price">$55</span>
+              <p>
+                A short, treat-filled introduction for puppies under 6 months.
+                Dogs only.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="gallery-section" id="gallery">
+        <div class="wrap">
+          <div class="head">
+            <h2>Fresh from the tub</h2>
+            <p>Photos of our recent clients will go here.</p>
+          </div>
+          <div class="gallery">
+            <figure class="ph">
+              <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                <ellipse cx="16" cy="21" rx="7.5" ry="6" />
+                <ellipse cx="7" cy="13" rx="3" ry="4" />
+                <ellipse cx="25" cy="13" rx="3" ry="4" />
+                <ellipse cx="12.5" cy="7.5" rx="2.8" ry="3.8" />
+                <ellipse cx="19.5" cy="7.5" rx="2.8" ry="3.8" />
+              </svg>
+              <figcaption>Photo: Biscuit after a Spa Day</figcaption>
+            </figure>
+            <figure class="ph">
+              <figcaption>Photo: Juniper, Full Groom</figcaption>
+            </figure>
+            <figure class="ph">
+              <figcaption>Photo: Miso the cat</figcaption>
+            </figure>
+            <figure class="ph"><figcaption>Photo: Paws</figcaption></figure>
+            <figure class="ph">
+              <figcaption>Photo: Waffles, Puppy First Groom</figcaption>
+            </figure>
+            <figure class="ph">
+              <figcaption>Photo: The salon</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="book" id="book">
+        <div class="wrap">
+          <div class="head">
+            <h2>Book a visit</h2>
+            <p>
+              Tell us who's coming and when. We'll text you to confirm the time
+              and the final price.
+            </p>
+          </div>
+          <div id="bookWrap">
+            <form id="bookForm" novalidate>
+              <div class="picked" id="picked">
+                <span id="pickedText"></span
+                ><button type="button" class="link-btn" id="clearPick">
+                  Remove
+                </button>
+              </div>
+              <div class="field">
+                <label for="pet">Pet name</label>
+                <input
+                  id="pet"
+                  name="pet"
+                  type="text"
+                  autocomplete="off"
+                  required
+                  aria-describedby="pet-e"
+                />
+                <div class="err" id="pet-e" role="alert"></div>
+              </div>
+              <div class="field">
+                <label for="owner">Your name</label>
+                <input
+                  id="owner"
+                  name="owner"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  aria-describedby="owner-e"
+                />
+                <div class="err" id="owner-e" role="alert"></div>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  required
+                  aria-describedby="phone-e"
+                />
+                <div class="err" id="phone-e" role="alert"></div>
+              </div>
+              <div class="field">
+                <label for="date">Preferred date</label>
+                <input
+                  id="date"
+                  name="date"
+                  type="date"
+                  required
+                  aria-describedby="date-e"
+                />
+                <div class="err" id="date-e" role="alert"></div>
+              </div>
+              <button class="btn" type="submit">Request this visit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">Mindful Paws. Boutique pet grooming.</div>
+    </footer>
+
+    <script>
+      (() => {
+        const $ = (s, r = document) => r.querySelector(s);
+
+        const SERVICES = {
+          bath: {
+            name: "Bath & Brush",
+            base: 45,
+            desc: "Bath, blow-dry and brush-out",
+          },
+          full: {
+            name: "Full Groom",
+            base: 75,
+            desc: "Bath, haircut, nails and paws",
+          },
+          spa: {
+            name: "Spa Day",
+            base: 120,
+            desc: "The long, unhurried works",
+          },
+          puppy: {
+            name: "Puppy First Groom",
+            base: 55,
+            desc: "Gentle intro, under 6 months",
+          },
+        };
+        const PETS = [
+          { id: "dog", label: "Dog", note: "Any breed", add: 0 },
+          { id: "cat", label: "Cat", note: "Handled extra gently", add: 10 },
+        ];
+        const SIZES = [
+          { id: "s", label: "Small", note: "Under 20 lb", add: 0 },
+          { id: "m", label: "Medium", note: "20 to 50 lb", add: 10 },
+          { id: "l", label: "Large", note: "Over 50 lb", add: 25 },
+        ];
+
+        const answers = { pet: null, size: null, service: null };
+        let stepIndex = 0;
+        const stepEl = $("#step"),
+          backBtn = $("#back"),
+          bars = document.querySelectorAll(".progress i");
+        let busy = false;
+
+        function optionsFor(i) {
+          if (i === 0)
+            return PETS.map((p) => ({
+              id: p.id,
+              title: p.label,
+              note: p.note,
+            }));
+          if (i === 1)
+            return SIZES.map((s) => ({
+              id: s.id,
+              title: s.label,
+              note: s.note,
+            }));
+          const ids =
+            answers.pet === "dog"
+              ? ["bath", "full", "spa", "puppy"]
+              : ["bath", "full", "spa"];
+          return ids.map((id) => ({
+            id,
+            title: SERVICES[id].name,
+            note: SERVICES[id].desc,
+          }));
+        }
+        const QUESTIONS = [
+          "Who's coming in?",
+          "How big are they?",
+          "What would they like?",
+        ];
+        const KEYS = ["pet", "size", "service"];
+
+        function html(i) {
+          const key = KEYS[i];
+          return `<h3 tabindex="-1">${QUESTIONS[i]}</h3>
+      <div class="options" role="group" aria-label="${QUESTIONS[i]}">
+      ${optionsFor(i)
+        .map(
+          (
+            o,
+          ) => `<button type="button" class="opt" data-id="${o.id}" aria-pressed="${answers[key] === o.id}">
+        <strong>${o.title}</strong><small>${o.note}</small></button>`,
+        )
+        .join("")}
+      </div>`;
+        }
+
+        function estimate() {
+          const svc = SERVICES[answers.service];
+          const pet = PETS.find((p) => p.id === answers.pet);
+          const size = SIZES.find((s) => s.id === answers.size);
+          const low = svc.base + pet.add + size.add;
+          return { svc, pet, size, low, high: low + 15 };
+        }
+
+        function resultHtml() {
+          const e = estimate();
+          return `<div class="result">
+      <h3 tabindex="-1">Your estimate</h3>
+      <div class="price">$${e.low} to $${e.high}</div>
+      <p class="summary">${e.svc.name} for a ${e.size.label.toLowerCase()} ${e.pet.label.toLowerCase()}. The top of the range covers heavy matting or extra-thick coats.</p>
+      <ul class="breakdown">
+        <li><span>${e.svc.name}</span><span>$${e.svc.base}</span></li>
+        ${e.pet.add ? `<li><span>Cat handling</span><span>+$${e.pet.add}</span></li>` : ""}
+        ${e.size.add ? `<li><span>${e.size.label} size</span><span>+$${e.size.add}</span></li>` : ""}
+      </ul>
+      <div class="actions">
+        <button class="btn" type="button" id="useEstimate">Book this visit</button>
+        <button class="link-btn" type="button" id="restart">Start over</button>
+      </div>
+    </div>`;
+        }
+
+        function setProgress() {
+          bars.forEach((b, i) => b.classList.toggle("done", i < stepIndex));
+          backBtn.hidden = stepIndex === 0;
+        }
+
+        function go(next) {
+          if (busy) return;
+          busy = true;
+          stepEl.classList.add("out");
+          setTimeout(
+            () => {
+              stepIndex = next;
+              stepEl.innerHTML = stepIndex > 2 ? resultHtml() : html(stepIndex);
+              setProgress();
+              stepEl.classList.remove("out");
+              stepEl.classList.add("in-start");
+              void stepEl.offsetWidth;
+              stepEl.classList.remove("in-start");
+              const h = $("h3", stepEl);
+              h && h.focus({ preventScroll: true });
+              busy = false;
+            },
+            matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 320,
+          );
+        }
+
+        stepEl.addEventListener("click", (e) => {
+          const opt = e.target.closest(".opt");
+          if (opt) {
+            const key = KEYS[stepIndex];
+            answers[key] = opt.dataset.id;
+            opt.parentElement
+              .querySelectorAll(".opt")
+              .forEach((o) => o.setAttribute("aria-pressed", o === opt));
+            setTimeout(() => go(stepIndex + 1), 220);
+            return;
+          }
+          if (e.target.id === "restart") {
+            answers.pet = answers.size = answers.service = null;
+            go(0);
+          }
+          if (e.target.id === "useEstimate") {
+            const x = estimate();
+            pickService(
+              `${x.svc.name}, ${x.size.label.toLowerCase()} ${x.pet.label.toLowerCase()} (est. $${x.low} to $${x.high})`,
+            );
+            $("#book").scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => $("#pet").focus({ preventScroll: true }), 600);
+          }
+        });
+        backBtn.addEventListener("click", () => {
+          if (stepIndex > 0) go(stepIndex - 1);
+        });
+
+        stepEl.innerHTML = html(0);
+        setProgress();
+
+        /* Booking form */
+        const form = $("#bookForm"),
+          picked = $("#picked"),
+          pickedText = $("#pickedText");
+        let pickedValue = "";
+        function pickService(text) {
+          pickedValue = text;
+          pickedText.textContent = text;
+          picked.classList.add("show");
+        }
+        $("#clearPick").addEventListener("click", () => {
+          pickedValue = "";
+          picked.classList.remove("show");
+        });
+
+        const dateEl = $("#date");
+        const t = new Date();
+        dateEl.min = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
+
+        const rules = {
+          pet: (v) => (v.trim() ? "" : "Enter your pet's name."),
+          owner: (v) => (v.trim() ? "" : "Enter your name."),
+          phone: (v) =>
+            v.replace(/\D/g, "").length >= 10
+              ? ""
+              : "Enter a phone number with at least 10 digits.",
+          date: (v) =>
+            !v
+              ? "Choose a date."
+              : v < dateEl.min
+                ? "Choose today or a future date."
+                : "",
+        };
+        function check(name) {
+          const input = form.elements[name],
+            msg = rules[name](input.value);
+          const box = $("#" + name + "-e");
+          box.textContent = msg;
+          box.classList.toggle("show", !!msg);
+          input.setAttribute("aria-invalid", !!msg);
+          return !msg;
+        }
+        Object.keys(rules).forEach((n) => {
+          form.elements[n].addEventListener("blur", () => check(n));
+          form.elements[n].addEventListener(
+            "input",
+            () =>
+              form.elements[n].getAttribute("aria-invalid") === "true" &&
+              check(n),
+          );
+        });
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const results = Object.keys(rules).map(check);
+          if (results.includes(false)) {
+            form.elements[Object.keys(rules)[results.indexOf(false)]].focus();
+            return;
+          }
+          const d = new Date(dateEl.value + "T00:00");
+          const nice = d.toLocaleDateString(undefined, {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          });
+          const wrap = $("#bookWrap");
+          wrap.innerHTML = `<div class="done" tabindex="-1">
+      <h3>Request sent</h3>
+      <p>Thanks, ${esc(form.elements.owner.value.trim())}. We'll text ${esc(form.elements.phone.value.trim())} to confirm ${esc(form.elements.pet.value.trim())}'s visit for ${nice}.${pickedValue ? " You asked for: " + esc(pickedValue) + "." : ""}</p>
+      <button class="btn ghost" type="button" id="another">Book another visit</button></div>`;
+          $(".done", wrap).focus({ preventScroll: true });
+          $("#another").addEventListener("click", () => location.reload());
+        });
+        function esc(s) {
+          return s.replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          );
+        }
+      })();
+    </script>
+  </body>
+</html>
