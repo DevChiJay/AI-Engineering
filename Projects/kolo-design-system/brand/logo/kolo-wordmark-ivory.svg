@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 84" width="204" height="84" role="img" aria-label="kolo">
+  <title>kolo</title>
+  <g fill="none" stroke="#FBF7F0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 8 V76"/>
+    <path d="M42 36 L14 59"/>
+    <path d="M26 49 L44 76"/>
+    <circle cx="80" cy="54" r="22"/>
+    <circle cx="80" cy="54" r="12"/>
+    <path d="M124 8 V76"/>
+    <circle cx="168" cy="54" r="22"/>
+    <circle cx="168" cy="54" r="12"/>
+  </g>
+</svg>

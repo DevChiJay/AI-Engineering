@@ -4,13 +4,6 @@
 
 ---
 
-# Fully journal learning and building processes
-
-    Use special writer skills
-    Automate where possible
-
----
-
 # Beast Mode - Tell me what to build 👻
 
         Update Bank Dashboard UI

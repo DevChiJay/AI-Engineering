@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kolo App and Pot</title>
+<meta name="description" content="Kolo launch concept: a savings-circle app and the Kolo Pot, a screenless light that shows how much of this cycle's Pot is in.">
+<meta name="author" content="Devchi Digital">
+<meta name="theme-color" content="#fbf7f0">
+<link rel="canonical" href="https://kolopot.web.app/">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+<!-- Open Graph (LinkedIn, Facebook, Slack, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kolo">
+<meta property="og:locale" content="en_NG">
+<meta property="og:url" content="https://kolopot.web.app/">
+<meta property="og:title" content="Kolo App and Pot">
+<meta property="og:description" content="Launch concept for the Kolo savings-circle app and the Kolo Pot. Designed and built by Devchi Digital.">
+<meta property="og:image" content="https://kolopot.web.app/og/kolo-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kolo launch page: Save together. Watch the Pot fill. Beside the ivory Kolo Pot with its light ring.">
+
+<!-- X / Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kolo App and Pot">
+<meta name="twitter:description" content="Launch concept for the Kolo savings-circle app and the Kolo Pot. Designed and built by Devchi Digital.">
+<meta name="twitter:image" content="https://kolopot.web.app/og/kolo-share.jpg">
+<meta name="twitter:image:alt" content="Kolo launch page: Save together. Watch the Pot fill. Beside the ivory Kolo Pot with its light ring.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>.demo__explore{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px;font-size:15px;color:var(--muted)}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Concept label: always visible -->
+<div class="concept-bar" role="note">
+  <div class="wrap concept-bar__inner">
+    <span class="concept-bar__tag">Concept</span>
+    <span>Kolo is a fictional product. No real money moves and no bank accounts connect. Kolo gives no financial advice and promises no returns.</span>
+  </div>
+</div>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="#top" aria-label="Kolo, back to top">
+      <svg class="wordmark" viewBox="0 0 204 84" width="88" height="36" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <path pathLength="1" d="M13 8 V76"/>
+          <path pathLength="1" d="M42 36 L14 59"/>
+          <path pathLength="1" d="M26 49 L44 76"/>
+          <circle pathLength="1" cx="80" cy="54" r="22"/>
+          <circle pathLength="1" cx="80" cy="54" r="12"/>
+          <path pathLength="1" d="M124 8 V76"/>
+          <circle pathLength="1" cx="168" cy="54" r="22"/>
+          <circle pathLength="1" cx="168" cy="54" r="12"/>
+        </g>
+      </svg>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#app">The app</a>
+      <a href="#pot">The Pot</a>
+      <a href="#editions">Editions</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+      <a href="/story/">Story</a>
+    </nav>
+    <a class="kl-btn kl-btn--primary nav__cta" href="/app/">Explore demo</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1 · Pinned motion hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__pin">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Kolo app + Kolo Pot · Launch concept</p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="line"><span>Save together.</span></span>
+            <span class="line"><span>Watch the Pot</span></span>
+            <span class="line"><span>fill.</span></span>
+          </h1>
+          <p class="hero__lede">Kolo runs your savings circle in the app and lights it up on the shelf. Everyone can see who has paid, whose turn is next and how healthy the circle is.</p>
+          <div class="hero__actions">
+            <a class="kl-btn kl-btn--primary" href="/app/">Explore demo</a>
+            <a class="kl-btn kl-btn--secondary" href="#demo">Request a demo</a>
+            <a class="kl-btn kl-btn--quiet" href="#pot">Meet the Pot</a>
+          </div>
+          <ol class="hero__steps" aria-label="One cycle of a savings circle">
+            <li><span><b>Tap the Pot</b>The ring shows this cycle</span></li>
+            <li><span><b>Members pay in</b>Four segments each</span></li>
+            <li><span><b>Payout day</b>The full ring breathes</span></li>
+          </ol>
+        </div>
+
+        <div class="hero__stage-col">
+          <div class="stage" id="hero-stage">
+            <img class="stage__photo" src="assets/pot-34.jpg" width="1021" height="1100" alt="The Kolo Pot in ivory: a squat rounded pot with a ring of light segments on its flat top">
+            <svg class="pot-svg stage__top" viewBox="0 0 400 400" data-edition="home" aria-hidden="true"></svg>
+            <div class="stage__avatars" aria-hidden="true"></div>
+          </div>
+          <div class="readout" aria-hidden="true">
+            <p class="readout__amount kl-num"><span data-hero="amount">₦200,000</span> <span class="readout__of">of ₦300,000</span></p>
+            <p class="readout__status" data-hero="status">Today in Friday Circle: <b>4 of 6 paid</b>. Payout is Friday.</p>
+          </div>
+          <p class="sr-only">Animation summary: the Pot is tapped and its 24-segment ring lights saffron for money still due. Six members pay ₦50,000 each; each payment turns four segments teal until the Pot holds ₦300,000 and Adaeze collects on payout day, Friday 27 February.</p>
+          <p class="credit">Motion by Claude · <span class="credit__hint">scroll to run one cycle</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Editorial statement + phones -->
+  <section class="chapter chapter--stone statement" aria-labelledby="statement-title">
+    <div class="wrap statement__grid">
+      <div class="statement__copy">
+        <p class="eyebrow">Ajo · Esusu · Kolo</p>
+        <h2 class="statement__title reveal-lines" id="statement-title">
+          <span class="line"><span>The oldest way</span></span>
+          <span class="line"><span>to save, with the</span></span>
+          <span class="line"><span>count in the open.</span></span>
+        </h2>
+        <p class="statement__body">A savings circle runs on trust and a fixed day. Six friends put in the same amount each month, and one of them collects the full Pot. Kolo keeps the count where everyone can see it, so nobody has to chase anyone in the group chat.</p>
+        <dl class="facts">
+          <div><dt>Members</dt><dd class="kl-num">6</dd></div>
+          <div><dt>Each, monthly</dt><dd class="kl-num">₦50,000</dd></div>
+          <div><dt>Pot each cycle</dt><dd class="kl-num">₦300,000</dd></div>
+        </dl>
+      </div>
+      <div class="phones" aria-label="Kolo on a phone">
+        <figure class="phone phone--a reveal-mask">
+          <img src="assets/mobile-home.jpg" width="900" height="1948" loading="lazy" alt="Kolo mobile Home: Circle Health 86, Healthy, and the Pot at ₦200,000 of ₦300,000">
+          <figcaption>Home</figcaption>
+        </figure>
+        <figure class="phone phone--b reveal-mask">
+          <img src="assets/mobile-pay.jpg" width="900" height="1948" loading="lazy" alt="Kolo mobile Pay contribution screen for ₦50,000">
+          <figcaption>Pay contribution</figcaption>
+        </figure>
+        <figure class="phone phone--c reveal-mask">
+          <img src="assets/mobile-payout.jpg" width="900" height="1948" loading="lazy" alt="Kolo mobile Payout day: It's your turn, Adaeze. ₦300,000 collected, 6 of 6 paid">
+          <figcaption>Payout day</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · App bento -->
+  <section class="chapter chapter--ivory app" id="app" aria-labelledby="app-title">
+    <div class="wrap">
+      <div class="app__head">
+        <p class="eyebrow">The app</p>
+        <h2 class="section-title reveal-lines" id="app-title">
+          <span class="line"><span>Three numbers.</span></span>
+          <span class="line"><span>One next step.</span></span>
+        </h2>
+        <p class="app__intro">Every screen leads with Circle Health, the Pot and your payout turn, with one suggested action beside them. Choose a card to open it.</p>
+      </div>
+
+      <div class="bento" id="bento">
+        <!-- Circle Health -->
+        <article class="bento__card" data-card="health">
+          <button class="bento__toggle" type="button" aria-expanded="false" aria-controls="bento-health">
+            <span class="bento__label">Circle Health</span>
+            <span class="bento__plus" aria-hidden="true"></span>
+          </button>
+          <div class="bento__compact" aria-hidden="true">
+            <div class="mini-ring" style="--v:.86"><span class="kl-num">86</span></div>
+            <p class="bento__figure kl-num">86<span> / 100</span></p>
+            <span class="kl-chip kl-chip--paid">Healthy</span>
+          </div>
+          <div class="bento__full" id="bento-health">
+            <div class="health">
+              <div class="kl-ring" style="width:168px;height:168px">
+                <svg width="168" height="168" viewBox="0 0 168 168" aria-hidden="true">
+                  <circle class="kl-ring__track" cx="84" cy="84" r="72"/>
+                  <circle class="kl-ring__arc kl-ring__arc--high" cx="84" cy="84" r="72" stroke-dasharray="389.08 452.39"/>
+                </svg>
+                <div class="kl-ring__center">
+                  <span class="kl-score__value">86</span>
+                  <span class="kl-score__band">Healthy</span>
+                </div>
+              </div>
+              <ul class="kl-stats">
+                <li class="kl-stat"><b>94%</b><span class="kl-caption">On-time rate</span></li>
+                <li class="kl-stat"><b>4 of 6</b><span class="kl-caption">Paid this cycle</span></li>
+                <li class="kl-stat"><b>4</b><span class="kl-caption">Days to payout</span></li>
+              </ul>
+            </div>
+            <div class="kl-action">
+              <p>Two members still to pay. Send a friendly reminder.</p>
+              <span class="kl-btn kl-btn--primary" aria-hidden="true">Send reminder</span>
+            </div>
+            <p class="bento__note">A score from 0 to 100 for the whole circle, built from these three inputs. 60 and up is Healthy; below 60 reads "Needs a nudge" in saffron. Never red.</p>
+          </div>
+        </article>
+
+        <!-- The Pot -->
+        <article class="bento__card" data-card="pot">
+          <button class="bento__toggle" type="button" aria-expanded="true" aria-controls="bento-pot">
+            <span class="bento__label">The Pot</span>
+            <span class="bento__plus" aria-hidden="true"></span>
+          </button>
+          <div class="bento__compact" aria-hidden="true">
+            <div class="mini-ring" style="--v:.6667"><span class="kl-num">4/6</span></div>
+            <p class="bento__figure kl-num">₦200,000</p>
+            <p class="kl-caption">of ₦300,000</p>
+          </div>
+          <div class="bento__full" id="bento-pot">
+            <div class="potcard">
+              <div class="kl-pot" id="bento-pot-ring">
+                <div class="kl-ring" style="width:180px;height:180px">
+                  <svg width="180" height="180" viewBox="0 0 180 180" aria-hidden="true">
+                    <circle class="kl-ring__track" cx="90" cy="90" r="78"/>
+                    <circle class="kl-ring__arc kl-ring__arc--high" cx="90" cy="90" r="78" stroke-dasharray="326.73 490.09"/>
+                  </svg>
+                  <div class="kl-ring__center">
+                    <span class="kl-pot__amount">₦200,000</span>
+                    <span class="kl-caption">of ₦300,000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="potcard__side">
+                <p class="potcard__figure kl-num">₦200,000 <span>of ₦300,000</span></p>
+                <p class="potcard__sub">4 of 6 members paid</p>
+                <p class="potcard__row"><span class="kl-chip kl-chip--paid">Paid</span> Adaeze, Tunde, Chioma, Ibrahim</p>
+                <p class="potcard__row"><span class="kl-chip kl-chip--due">Due Fri</span> Funmi, Emeka</p>
+                <p class="potcard__due kl-num">₦100,000 still to come in</p>
+              </div>
+            </div>
+            <p class="bento__note">Each member puts in ₦50,000 a month. When the Pot reaches ₦300,000, this cycle's member collects all of it.</p>
+          </div>
+        </article>
+
+        <!-- Payout turn -->
+        <article class="bento__card" data-card="payout">
+          <button class="bento__toggle" type="button" aria-expanded="false" aria-controls="bento-payout">
+            <span class="bento__label">Payout turn</span>
+            <span class="bento__plus" aria-hidden="true"></span>
+          </button>
+          <div class="bento__compact" aria-hidden="true">
+            <div class="mini-coin"><span class="kl-num">4</span></div>
+            <p class="bento__figure kl-num">4th<span> of 6</span></p>
+            <p class="kl-caption">Fri 27 Feb · ₦300,000</p>
+          </div>
+          <div class="bento__full" id="bento-payout">
+            <p class="payout__turn">Your turn</p>
+            <p class="payout__figure kl-num">₦300,000 <span>on Fri 27 Feb</span></p>
+            <p class="payout__sub">4th of 6 in the payout order · in 4 days</p>
+            <ol class="kl-payouts">
+              <li class="kl-coin kl-coin--done" aria-label="Turn 1, Tunde, collected 28 Nov"><span class="kl-coin__face">1</span><p class="kl-coin__name">Tunde</p><p class="kl-coin__date">28 Nov</p></li>
+              <li class="kl-coin kl-coin--done" aria-label="Turn 2, Chioma, collected 26 Dec"><span class="kl-coin__face">2</span><p class="kl-coin__name">Chioma</p><p class="kl-coin__date">26 Dec</p></li>
+              <li class="kl-coin kl-coin--done" aria-label="Turn 3, Ibrahim, collected 30 Jan"><span class="kl-coin__face">3</span><p class="kl-coin__name">Ibrahim</p><p class="kl-coin__date">30 Jan</p></li>
+              <li class="kl-coin kl-coin--you" aria-label="Turn 4, you, collecting 27 Feb"><span class="kl-coin__face">4</span><p class="kl-coin__name">You</p><p class="kl-coin__date">27 Feb</p></li>
+              <li class="kl-coin"><span class="kl-coin__face">5</span><p class="kl-coin__name">Funmi</p><p class="kl-coin__date">27 Mar</p></li>
+              <li class="kl-coin"><span class="kl-coin__face">6</span><p class="kl-coin__name">Emeka</p><p class="kl-coin__date">24 Apr</p></li>
+            </ol>
+            <p class="bento__note">The payout order is set when the circle starts. Everyone sees whose turn is next and the date they collect.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · The Pot light ring (the one indigo chapter) -->
+  <section class="ring-chapter" id="pot" aria-labelledby="pot-title">
+    <div class="ring-chapter__panel">
+      <div class="wrap ring-chapter__grid">
+        <div class="ring-chapter__visual">
+          <svg class="pot-svg ring-pot" id="ring-pot" viewBox="0 0 400 400" data-edition="desk" role="img" aria-label="Top view of the Kolo Pot Desk edition and its light ring"></svg>
+          <p class="ring-chapter__hint" aria-hidden="true">Kolo Desk · top view</p>
+        </div>
+        <div class="ring-chapter__copy">
+          <p class="eyebrow eyebrow--on-indigo">The Kolo Pot</p>
+          <h2 class="section-title section-title--on-indigo" id="pot-title">A light on the shelf for the whole circle.</h2>
+          <p class="ring-chapter__lede">No screen and no buttons. Tap the top and the light ring shows how much of this cycle's Pot is in. In a circle of six, each member owns four of the 24 segments.</p>
+
+          <dl class="ring-readout" aria-live="polite">
+            <div><dt>Segments lit</dt><dd class="kl-num"><span data-ring="segs">16</span> of 24</dd></div>
+            <div><dt>Members paid</dt><dd class="kl-num"><span data-ring="paid">4</span> of 6</dd></div>
+            <div><dt>In the Pot</dt><dd class="kl-num"><span data-ring="amount">₦200,000</span> <span class="ring-readout__of">of ₦300,000</span></dd></div>
+          </dl>
+          <p class="ring-mode" data-ring="mode">Tap · showing this cycle's Pot</p>
+
+          <div class="ring-controls" role="group" aria-label="Try the Pot">
+            <button class="kl-btn kl-btn--on-indigo" type="button" data-action="pay">Next payment</button>
+            <button class="kl-btn kl-btn--ghost" type="button" data-action="tap" aria-pressed="true">Tap</button>
+            <button class="kl-btn kl-btn--ghost" type="button" data-action="health" aria-pressed="false">Double tap</button>
+            <button class="kl-btn kl-btn--ghost" type="button" data-action="payout" aria-pressed="false">Payout day</button>
+            <button class="kl-btn kl-btn--ghost" type="button" data-action="reset">Reset</button>
+          </div>
+
+          <ul class="ring-legend">
+            <li><span class="dot dot--paid" aria-hidden="true"></span><b>Teal</b> paid</li>
+            <li><span class="dot dot--due" aria-hidden="true"></span><b>Saffron</b> still due</li>
+            <li><b>Double tap</b> Circle Health: teal at 60 and up, saffron below</li>
+            <li><b>Payout day</b> full teal ring, slow breathe</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Editions -->
+  <section class="chapter chapter--ivory editions" id="editions" aria-labelledby="editions-title">
+    <div class="wrap">
+      <div class="editions__head">
+        <p class="eyebrow">Editions</p>
+        <h2 class="section-title reveal-lines" id="editions-title">
+          <span class="line"><span>One shell, one board,</span></span>
+          <span class="line"><span>three circles.</span></span>
+        </h2>
+        <p class="editions__intro">Every Pot is built on the same line. Editions differ in finish, light preset and box. Teal and saffron appear only as light, never as paint.</p>
+      </div>
+      <div class="editions__grid">
+        <article class="edition edition--home">
+          <figure class="edition__media reveal-mask"><img src="assets/edition-home.jpg" width="900" height="735" loading="lazy" alt="Kolo Home: ivory Pot with an indigo inner rim"></figure>
+          <div class="edition__body">
+            <h3>Kolo Home</h3>
+            <p class="edition__for">For family circles</p>
+            <p>For parents, aunties and older cousins who don't open the app every day. The Pot sits in the sitting room, so everyone can see how it's doing without a phone.</p>
+            <dl class="edition__specs"><div><dt>Finish</dt><dd>Ivory, indigo rim</dd></div><div><dt>Light preset</dt><dd>Pot on tap, dims after 9 pm</dd></div></dl>
+          </div>
+        </article>
+        <article class="edition edition--desk">
+          <figure class="edition__media reveal-mask"><img src="assets/edition-desk.jpg" width="900" height="735" loading="lazy" alt="Kolo Desk: indigo Pot with an ivory inner rim"></figure>
+          <div class="edition__body">
+            <h3>Kolo Desk</h3>
+            <p class="edition__for">For workplace circles</p>
+            <p>Coworkers pay on payday and collect on a fixed day. The Pot sits on a shared desk, so the circle can see who's in.</p>
+            <dl class="edition__specs"><div><dt>Finish</dt><dd>Indigo, ivory rim</dd></div><div><dt>Light preset</dt><dd>Quiet in work hours, breathes on payout day</dd></div></dl>
+          </div>
+        </article>
+        <article class="edition edition--owambe">
+          <figure class="edition__media reveal-mask"><img src="assets/edition-owambe.jpg" width="900" height="735" loading="lazy" alt="Kolo Owambe: stone Pot with an indigo inner rim"></figure>
+          <div class="edition__body">
+            <h3>Kolo Owambe</h3>
+            <p class="edition__for">For wedding and celebration circles</p>
+            <p>Aso-ebi and naming-ceremony circles save towards one date, then end. Double tap counts down the days, then the Pot stays on the shelf as a keepsake.</p>
+            <dl class="edition__specs"><div><dt>Finish</dt><dd>Stone, indigo rim</dd></div><div><dt>After the day</dt><dd>Keepsake mode, ring stays off</dd></div></dl>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Specs -->
+  <section class="chapter chapter--stone specs" id="specs" aria-labelledby="specs-title">
+    <div class="wrap specs__grid">
+      <div class="specs__aside">
+        <p class="eyebrow">Specs</p>
+        <h2 class="section-title reveal-lines" id="specs-title">
+          <span class="line"><span>Small enough for</span></span>
+          <span class="line"><span>one hand.</span></span>
+        </h2>
+        <figure class="specs__figure reveal-mask">
+          <img src="assets/pot-front.jpg" width="943" height="1100" loading="lazy" alt="Front view of the Kolo Pot">
+          <svg class="specs__dims" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="14" y1="80" x2="86" y2="80"/><line x1="14" y1="77.5" x2="14" y2="82.5"/><line x1="86" y1="77.5" x2="86" y2="82.5"/>
+          </svg>
+          <figcaption><span class="kl-num">Ø110 × 72 mm</span> · a squat clay-pot shape, widest 30 mm up</figcaption>
+        </figure>
+      </div>
+      <div class="specs__lists">
+        <h3 class="specs__group">Kolo Pot</h3>
+        <dl class="spec-list">
+          <div><dt>Size</dt><dd class="kl-num">Ø110 × 72 mm<span>Base Ø92 · top face Ø80</span></dd></div>
+          <div><dt>Weight</dt><dd class="kl-num">250 g<span>A ≈105 g steel plate keeps it put when tapped</span></dd></div>
+          <div><dt>Light ring</dt><dd class="kl-num">24 RGB LEDs<span>On Ø60 behind a 3 mm opal diffuser, 15° apart</span></dd></div>
+          <div><dt>Tap sensor</dt><dd class="kl-num">Ø28 capacitive pad<span>Under a 2.2 mm top cap</span></dd></div>
+          <div><dt>Battery</dt><dd class="kl-num">2,000 mAh<span>Target: 4 weeks a charge, with hourly sync</span></dd></div>
+          <div><dt>Charging</dt><dd class="kl-num">USB-C, 5 V 1 A<span>About 2.5 h to full · Qi 5 W is a stretch goal</span></dd></div>
+          <div><dt>Wireless</dt><dd>Wi-Fi 2.4 GHz + Bluetooth LE 5<span>Set up over Bluetooth from the Kolo app</span></dd></div>
+          <div><dt>Materials</dt><dd>PC/ABS shell, opal PMMA diffuser<span>Silicone foot · ambient light sensor dims it at night</span></dd></div>
+          <div><dt>In the box</dt><dd>Pot, USB-C cable, quick-start card<span>Paper only, no plastic: 130 × 130 × 95 mm box, moulded pulp tray</span></dd></div>
+        </dl>
+        <h3 class="specs__group">Kolo app</h3>
+        <dl class="spec-list">
+          <div><dt>Platforms</dt><dd>Web and mobile<span>Same cards, spacing and member data on both</span></dd></div>
+          <div><dt>Screens</dt><dd>Overview, Circle, Contributions, Payouts, Goal<span>Plus Home, Pay contribution and Payout day on mobile</span></dd></div>
+          <div><dt>Not included</dt><dd>Loans, interest, investing<span>Also no chat and no public leaderboards</span></dd></div>
+        </dl>
+        <p class="specs__note">Every hardware number is a first estimate from Pot spec v0.1.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · FAQ -->
+  <section class="chapter chapter--ivory faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq__grid">
+      <div class="faq__head">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section-title" id="faq-title">Questions circles ask.</h2>
+      </div>
+      <div class="faq__list">
+        <details class="faq__item" name="faq">
+          <summary>Is Kolo a real product?</summary>
+          <div class="faq__answer"><p>No. Kolo is a design concept. Every member, amount and date on this page is invented. No real money moves and no bank accounts connect.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>Does Kolo give financial advice or promise returns?</summary>
+          <div class="faq__answer"><p>No. Kolo gives no financial advice and promises no returns. It shows what your circle has paid and collected. It adds no interest.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>What does the light ring show?</summary>
+          <div class="faq__answer"><p>Each segment is part of this cycle's Pot. In a circle of six, every member has four of the 24 segments. Teal means paid and saffron means still due. Tap for the Pot, double tap for Circle Health, and on payout day the full ring breathes slowly.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>What happens when someone pays late?</summary>
+          <div class="faq__answer"><p>Their segments stay saffron and the app suggests a friendly reminder. Kolo says "Due Fri", never "late", and it never uses red.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>What is Circle Health?</summary>
+          <div class="faq__answer"><p>A score from 0 to 100 for the whole circle, built from the on-time rate, members paid this cycle and days to payout. 60 and up is Healthy.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>Do I need the Pot to use Kolo?</summary>
+          <div class="faq__answer"><p>No. The app runs the circle on its own. The Pot is a shared view for people who don't open the app every day.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>How do I set up the Pot?</summary>
+          <div class="faq__answer"><p>Scan the pairing code on the quick-start card in the Kolo app, then tap the Pot. Setup runs over Bluetooth. After that the Pot syncs over Wi-Fi every hour.</p></div>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>How long does the battery last?</summary>
+          <div class="faq__answer"><p>The target is four weeks a charge, assuming four taps a day and hourly sync. When the battery is low, one segment blinks white. Charge it over USB-C.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · Demo CTA -->
+  <section class="chapter chapter--stone demo" id="demo" aria-labelledby="demo-title">
+    <div class="wrap demo__grid">
+      <div class="demo__copy">
+        <p class="eyebrow">Demo</p>
+        <h2 class="demo__title reveal-lines" id="demo-title">
+          <span class="line"><span>See Kolo with</span></span>
+          <span class="line"><span>your circle.</span></span>
+        </h2>
+        <p class="demo__body">A 20-minute walkthrough of the app and a Pot, set up with a sample circle the size of yours.</p>
+        <p class="demo__explore"><a class="kl-btn kl-btn--secondary" href="/app/">Explore demo</a> <a class="kl-btn kl-btn--quiet" href="/story/">Watch the story</a> <span>Try the app with Adaeze's Friday Circle, or watch the 86-second story.</span></p>
+      </div>
+      <form class="kl-card demo__form" id="demo-form" novalidate>
+        <div class="field">
+          <label for="demo-name">Your name</label>
+          <input id="demo-name" name="name" type="text" autocomplete="name" required placeholder="Adaeze Nwosu">
+        </div>
+        <div class="field">
+          <label for="demo-email">Email</label>
+          <input id="demo-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="demo-type">Circle</label>
+            <select id="demo-type" name="type">
+              <option>Workplace</option>
+              <option>Family</option>
+              <option>Wedding or celebration</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="demo-size">Members</label>
+            <select id="demo-size" name="size">
+              <option>2</option><option>3</option><option>4</option><option selected>6</option><option>8</option><option>12</option>
+            </select>
+          </div>
+        </div>
+        <p class="field__error" id="demo-error" hidden>Add your name and an email address with an @.</p>
+        <button class="kl-btn kl-btn--primary kl-btn--block" type="submit">Request a demo</button>
+        <p class="demo__fine">Concept page: this form sends nothing.</p>
+        <div class="demo__done" id="demo-done" hidden tabindex="-1">
+          <p class="demo__done-title">Request noted.</p>
+          <p id="demo-done-text">This is a concept page, so nothing was sent.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <svg class="footer__mark" viewBox="0 0 204 84" width="120" height="50" role="img" aria-label="kolo">
+      <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 8 V76"/><path d="M42 36 L14 59"/><path d="M26 49 L44 76"/>
+        <circle cx="80" cy="54" r="22"/><circle cx="80" cy="54" r="12"/>
+        <path d="M124 8 V76"/><circle cx="168" cy="54" r="22"/><circle cx="168" cy="54" r="12"/>
+      </g>
+    </svg>
+    <div class="footer__text">
+      <p><b>Concept.</b> Kolo is a fictional savings-circle app and companion object made for a design exercise. Members, amounts and dates are invented.</p>
+      <p>Kolo gives no financial advice and promises no returns. It shows what your circle has paid and collected; it adds no interest.</p>
+    </div>
+    <p class="footer__meta">Pot spec v0.1 · 13 Nov 2026 · Motion by Claude</p>
+    <p class="footer__credit">Designed and built by <a href="https://devchi.me" target="_blank" rel="noopener">Devchi Digital</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kolo-site",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "kolo_site",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "kolo-static",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "kolo_site",
+        "preview"
+      ],
+      "port": 4173
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "public": "out",
+    "target": "KoloPot",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

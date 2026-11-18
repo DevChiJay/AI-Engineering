@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "version": 1,
+    "today": "2026-02-23",
+    "currency": "NGN",
+    "note": "Invented demo data for the Kolo concept. No real people, accounts or money."
+  },
+  "profiles": {
+    "adaeze": {
+      "label": "Adaeze · Friday Circle",
+      "viewerId": "an",
+      "circle": {
+        "id": "friday",
+        "name": "Friday Circle",
+        "description": "Six coworkers",
+        "contribution": 50000,
+        "frequency": "monthly",
+        "status": "active",
+        "round": 2,
+        "roundLabel": "Round 2 · November to April",
+        "members": [
+          { "id": "tb", "name": "Tunde Bakare", "first": "Tunde", "initials": "TB", "turn": 1, "priorOnTime": 8 },
+          { "id": "ce", "name": "Chioma Eze", "first": "Chioma", "initials": "CE", "turn": 2, "priorOnTime": 5 },
+          { "id": "im", "name": "Ibrahim Musa", "first": "Ibrahim", "initials": "IM", "turn": 3, "priorOnTime": 7 },
+          { "id": "an", "name": "Adaeze Nwosu", "first": "Adaeze", "initials": "AN", "turn": 4, "priorOnTime": 3 },
+          { "id": "fa", "name": "Funmi Adeyemi", "first": "Funmi", "initials": "FA", "turn": 5, "priorOnTime": 6 },
+          { "id": "eo", "name": "Emeka Okafor", "first": "Emeka", "initials": "EO", "turn": 6, "priorOnTime": 4 }
+        ],
+        "cycles": [
+          {
+            "id": "2025-09", "label": "September", "short": "Sep", "due": "2025-09-26", "round": 1, "collectorId": "eo", "collected": "2025-09-26",
+            "payments": { "tb": "2025-09-18", "ce": "2025-09-19", "im": "2025-09-22", "an": "2025-09-24", "fa": "2025-09-20", "eo": "2025-09-25" }
+          },
+          {
+            "id": "2025-10", "label": "October", "short": "Oct", "due": "2025-10-31", "round": 1, "collectorId": "fa", "collected": "2025-10-31",
+            "payments": { "tb": "2025-10-24", "ce": "2025-10-24", "im": "2025-10-27", "an": "2025-10-29", "fa": "2025-10-25", "eo": "2025-10-26" }
+          },
+          {
+            "id": "2025-11", "label": "November", "short": "Nov", "due": "2025-11-28", "round": 2, "collectorId": "tb", "collected": "2025-11-28",
+            "payments": { "tb": "2025-11-21", "ce": "2025-11-24", "im": "2025-11-20", "an": "2025-11-26", "fa": "2025-11-27", "eo": "2025-11-22" }
+          },
+          {
+            "id": "2025-12", "label": "December", "short": "Dec", "due": "2025-12-26", "round": 2, "collectorId": "ce", "collected": "2025-12-26",
+            "payments": { "tb": "2025-12-19", "ce": "2025-12-20", "im": "2025-12-22", "an": "2025-12-23", "fa": "2025-12-24", "eo": "2025-12-24" }
+          },
+          {
+            "id": "2026-01", "label": "January", "short": "Jan", "due": "2026-01-30", "round": 2, "collectorId": "im", "collected": "2026-02-03",
+            "note": "Two members paid a few days after the due date, after the holidays. Everyone was square by 3 Feb, and Ibrahim collected that day.",
+            "payments": { "tb": "2026-01-23", "ce": "2026-01-29", "im": "2026-01-26", "an": "2026-01-28", "fa": "2026-02-02", "eo": "2026-02-03" }
+          },
+          {
+            "id": "2026-02", "label": "February", "short": "Feb", "due": "2026-02-27", "round": 2, "collectorId": "an", "collected": null,
+            "payments": { "tb": "2026-02-18", "ce": "2026-02-19", "im": "2026-02-21", "an": "2026-02-20", "fa": null, "eo": null }
+          }
+        ],
+        "upcoming": [
+          { "id": "2026-03", "label": "March", "short": "Mar", "due": "2026-03-27", "round": 2, "collectorId": "fa" },
+          { "id": "2026-04", "label": "April", "short": "Apr", "due": "2026-04-24", "round": 2, "collectorId": "eo" }
+        ]
+      },
+      "goal": {
+        "title": "Rent deposit",
+        "target": 400000,
+        "detail": "A deposit for a one-bedroom flat in Yaba."
+      }
+    },
+    "new": {
+      "label": "New circle · empty",
+      "viewerId": "an",
+      "circle": {
+        "id": "saturday",
+        "name": "Saturday Circle",
+        "description": "Just created",
+        "contribution": 20000,
+        "frequency": "monthly",
+        "status": "inviting",
+        "round": 1,
+        "roundLabel": "Round 1 · starts when everyone joins",
+        "members": [
+          { "id": "an", "name": "Adaeze Nwosu", "first": "Adaeze", "initials": "AN", "turn": null, "priorOnTime": 0 }
+        ],
+        "cycles": [],
+        "upcoming": []
+      },
+      "goal": null
+    }
+  }
+}
